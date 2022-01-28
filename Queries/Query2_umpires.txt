@@ -1,0 +1,7 @@
+select umpire_name
+from umpire_match , umpire
+where
+umpire.umpire_id=umpire_match.umpire_id and
+match_id = $1
+and 
+($2=$2)

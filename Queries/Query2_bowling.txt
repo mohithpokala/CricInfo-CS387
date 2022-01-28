@@ -1,0 +1,9 @@
+select 
+player_name as Bowler,
+count(player_id) as Bowls_Bowled,
+sum(runs_scored) as runs_given,
+sum(CASE WHEN out_type not in ('run out','retired hurt') THEN 1 else 0 END) as wickets
+from ball_by_ball,player,match
+where
+bowler=player_id and match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2
+group by player_name

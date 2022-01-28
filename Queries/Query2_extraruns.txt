@@ -1,0 +1,13 @@
+select match_id,
+sum(CASE when innings_no=1 THEN extra_runs else 0 END) as extra1,
+sum(CASE when innings_no=2 THEN extra_runs else 0 END) as extra2,
+sum(CASE when innings_no=1 THEN extra_runs+runs_scored else 0 END) as total1,
+sum(CASE when innings_no=2 THEN extra_runs+runs_scored else 0 END) as total2,
+sum(CASE WHEN innings_no=1 and out_type not in ('run out','retired hurt') THEN 1 else 0 END) as wkts1,
+sum(CASE WHEN innings_no=2 and out_type not in ('run out','retired hurt') THEN 1 else 0 END) as wkts2
+from ball_by_ball
+where match_id = $1
+and 
+($2=$2)
+
+
