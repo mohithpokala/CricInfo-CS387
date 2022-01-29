@@ -1,5 +1,6 @@
 const express =require('express');
-const {bat_stats,bowl_stats,misc_info,umpire_info,player_info,summary} = require('../Controllers');
+const {bat_stats,bowl_stats,misc_info,umpire_info,player_info} = require('../Controllers');
+const { summary } = require('../Controllers/scoreboard.controller');
 const routes = express.Router();
 
 routes.get('/scorecard/bat_stats/:match_id/:innings_number',bat_stats);

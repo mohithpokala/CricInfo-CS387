@@ -1,3 +1,3 @@
-const {bat_stats,bowl_stats,misc_info,umpire_info,player_info,scorecard_summary} = require('./scoreboard.controller');
+const {bat_stats,bowl_stats,misc_info,umpire_info,player_info,summary} = require('./scoreboard.controller');
 
-module.exports= {bat_stats,bowl_stats,misc_info,umpire_info,player_info,scorecard_summary}
+module.exports= {bat_stats,bowl_stats,misc_info,umpire_info,player_info,summary}
