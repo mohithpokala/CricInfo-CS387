@@ -1,4 +1,4 @@
-const pool = require("./config");
+const pool = require("./database");
 
 const sb = async(match_id,innings_number)=>{
 
