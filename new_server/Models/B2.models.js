@@ -3,15 +3,17 @@ const pool = require("./database");
 const bats_stats = async(match_id,innings_number)=>{
 
     const query=`select
-        player_name as Batter,
-        sum(runs_scored) as Runs,
-        sum(CASE WHEN runs_scored=4 THEN 1 else 0 END) as fours,
-        sum(CASE WHEN runs_scored=6 THEN 1 else 0 END) as sixes,
-        count(striker) as Balls_faced
-        from ball_by_ball,player,match
-        where
-        striker=player_id and match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2
-        group by player_name
+    player.player_id,
+    player_name as Batter,
+    sum(runs_scored) as Runs,
+    sum(CASE WHEN runs_scored=4 THEN 1 else 0 END) as fours,
+    sum(CASE WHEN runs_scored=6 THEN 1 else 0 END) as sixes,
+    count(striker) as Balls_faced
+    from ball_by_ball,player,match
+    where
+    striker=player_id and match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2
+    group by player_name,player.player_id
+    order by runs desc,Balls_faced asc
     `;
     const todo = await pool.query(query,[match_id,innings_number]);
     return  todo.rows
@@ -20,14 +22,16 @@ const bats_stats = async(match_id,innings_number)=>{
 const bowl_stats = async(match_id,innings_number)=>{
 
     const query=`select 
-        player_name as Bowler,
-        count(player_id) as Bowls_Bowled,
-        sum(runs_scored) as runs_given,
-        count(out_type) as wickets
-        from ball_by_ball,player,match
-        where
-        bowler=player_id and match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2
-        group by player_name
+    player.player_id,
+    player_name as Bowler,
+    count(player_id) as Bowls_Bowled,
+    sum(runs_scored) as runs_given,
+    count(out_type) as wickets
+    from ball_by_ball,player,match
+    where
+    bowler=player_id and match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2
+    group by player_name,player.player_id
+    order by wickets desc,runs_given asc
     `;
     const todo = await pool.query(query,[match_id,innings_number]);
     return  todo.rows
