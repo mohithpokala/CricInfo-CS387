@@ -1,4 +1,4 @@
-const {matches_info_func,match_info_func} = require('../Services/matches.services.js');
+const {matches_info_func,match_info_func} = require('../Services/B1.services.js');
 
 
 const matches_info = async (req,res) => {

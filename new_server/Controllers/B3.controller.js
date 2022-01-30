@@ -1,4 +1,4 @@
-const score_compare = require("../Services/scorecomparision.services");
+const score_compare = require("../Services/B3.services");
 
 const comp = async (req,res) => {
     const innings_number = req.params.innings_number;

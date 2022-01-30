@@ -1,6 +1,6 @@
 const pool = require("./database");
 
-const sb = async(match_id,innings_number)=>{
+const bats_stats = async(match_id,innings_number)=>{
 
     const query=`select
         player_name as Batter,
@@ -17,7 +17,7 @@ const sb = async(match_id,innings_number)=>{
     return  todo.rows
 }
 
-const sbo = async(match_id,innings_number)=>{
+const bowl_stats = async(match_id,innings_number)=>{
 
     const query=`select 
         player_name as Bowler,
@@ -33,7 +33,7 @@ const sbo = async(match_id,innings_number)=>{
     return  todo.rows
 }
 
-const sm = async(match_id)=>{
+const match_info = async(match_id)=>{
     const query=
     `select 
         toss_winner,toss_name,venue_name,city_name,season_year,X.team_name,Y.team_name
@@ -47,7 +47,7 @@ const sm = async(match_id)=>{
     return todo.rows;
 }
 
-const su = async(match_id)=>{
+const umpire_info = async(match_id)=>{
     const query=
     `
         select umpire_name
@@ -60,7 +60,7 @@ const su = async(match_id)=>{
     return todo.rows;
 }
 
-const ss = async(match_id)=>{
+const summary = async(match_id)=>{
     const query=
     `
         select match_id,
@@ -77,7 +77,8 @@ const ss = async(match_id)=>{
     return todo.rows;
 }
 
-const sp = async(match_id,team_number)=>{
+const player_info1 = async(match_id,team_number)=>{
+    console.log(match_id,team_number);
     const query=
     `
         select player_name 
@@ -87,7 +88,7 @@ const sp = async(match_id,team_number)=>{
         and
         player_match.match_id = match.match_id
         and 
-        player_match.team_id = match.team$2
+        player_match.team_id = match.team1
         and
         player_match.match_id=$1
     `;
@@ -95,4 +96,24 @@ const sp = async(match_id,team_number)=>{
     return todo.rows;
 }
 
-module.exports = {sb,sbo,ss,su,sm,sp};
+
+const player_info2 = async(match_id,team_number)=>{
+    console.log(match_id,team_number);
+    const query=
+    `
+        select player_name 
+        from player_match,player,match 
+        where 
+        player_match.player_id = player.player_id
+        and
+        player_match.match_id = match.match_id
+        and 
+        player_match.team_id = match.team2
+        and
+        player_match.match_id=$1
+    `;
+    const todo = await pool.query(query,[match_id,team_number]);
+    return todo.rows;
+}
+
+module.exports = {player_info1,player_info2,umpire_info,match_info,bats_stats,bowl_stats,summary};

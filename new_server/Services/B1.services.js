@@ -1,4 +1,4 @@
-const {mf,mfi} = require('../Models/matches.models');
+const {mf,mfi} = require('../Models/B1.models');
 
 const matches_info_func = async(skip,limit)=>{
     const data = await mf(skip,limit);
