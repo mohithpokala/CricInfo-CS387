@@ -1,7 +1,7 @@
 const {bats_stats,bowl_stats,player_info1,umpire_info,player_info2,match_info,summary} = require('../Models/B2.models');
 
 const scorecard_info = async(arg1,arg2,arg3)=>{
-    const data="dummy;"
+    var data="dummy;"
     switch(arg3){
         case "0": data = await bats_stats(arg1,arg2);break;
         case "1": data = await bowl_stats(arg1,arg2);break;
