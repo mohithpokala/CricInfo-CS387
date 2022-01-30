@@ -76,13 +76,14 @@ const summary = async(match_id)=>{
         sum(CASE WHEN innings_no=2 and out_type is not NULL THEN 1 else 0 END) as wkts2
         from ball_by_ball
         where match_id = $1
+        group by match_id
     `;
     const todo = await pool.query(query,[match_id]);
     return todo.rows;
 }
 
-const player_info1 = async(match_id,team_number)=>{
-    console.log(match_id,team_number);
+const player_info1 = async(match_id)=>{
+    console.log(match_id);
     const query=
     `
         select player_name 
@@ -96,13 +97,13 @@ const player_info1 = async(match_id,team_number)=>{
         and
         player_match.match_id=$1
     `;
-    const todo = await pool.query(query,[match_id,team_number]);
+    const todo = await pool.query(query,[match_id]);
     return todo.rows;
 }
 
 
-const player_info2 = async(match_id,team_number)=>{
-    console.log(match_id,team_number);
+const player_info2 = async(match_id)=>{
+    console.log(match_id);
     const query=
     `
         select player_name 
@@ -116,7 +117,7 @@ const player_info2 = async(match_id,team_number)=>{
         and
         player_match.match_id=$1
     `;
-    const todo = await pool.query(query,[match_id,team_number]);
+    const todo = await pool.query(query,[match_id]);
     return todo.rows;
 }
 
