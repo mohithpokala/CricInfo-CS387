@@ -40,7 +40,7 @@ const bowl_stats = async(match_id,innings_number)=>{
 const match_info = async(match_id)=>{
     const query=
     `select 
-        toss_winner,toss_name,venue_name,city_name,season_year,X.team_name,Y.team_name
+        X.team_name as team1,Y.team_name as team2,toss_winner,toss_name,venue_name,city_name,season_year,X.team_name,Y.team_name
         from match,venue,team as X,team as Y
         where 
         venue.venue_id=match.venue_id and
