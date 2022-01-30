@@ -1,69 +1,43 @@
 import { Outlet, Link } from "react-router-dom";
 import * as React from 'react';
+import Typography from '@mui/material/Typography';
 
-import ListSubheader from '@mui/material/ListSubheader';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
+
+
 import SportsCricketIcon from '@mui/icons-material/SportsCricket';
 import HomeIcon from '@mui/icons-material/Home';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
+function handleClick(event) {
+  event.preventDefault();
+  console.info('You clicked a breadcrumb.');
+}
 
 const Layout = () => {
   return (
     <>
-      {/* <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/matches">Matches</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav> */}
 
 
-<List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          CricInfo
-        </ListSubheader>
-      }
-    >
-      <Link to="/"><ListItemButton> 
-        <ListItemIcon>
-          <HomeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Home" />
-      </ListItemButton></Link>
-      <Link to="/matches"> <ListItemButton>
-        <ListItemIcon>
-          <SportsCricketIcon />
-        </ListItemIcon>
-        <ListItemText primary="Matches" />
-      </ListItemButton></Link>
-    </List>
-      
+<div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Typography variant="subtitle1" color="text.primary">CricInfo</Typography>
+      <Link underline="hover"
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="inherit" to="/">
+        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          Home
+      </Link>
+      <Link underline="hover"
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="inherit" to="/matches"> 
+          <SportsCricketIcon sx={{ mr: 0.5 }} fontSize="inherit" />Matches</Link>
+      </Breadcrumbs>
 
-
-
+      </div>
 
       <Outlet />
     </>
