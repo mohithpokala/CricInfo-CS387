@@ -1,8 +1,8 @@
-const sc = require("../Models/B3.models")
+const {sc} = require("../Models/B3.models")
 
-const score_compare = async(match_id,innings_number)=>{
+const compare = async(match_id,innings_number)=>{
     const data = await sc(match_id,innings_number);
     return data
 }
 
-module.exports = {score_compare};
+module.exports = {compare};
