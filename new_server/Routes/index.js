@@ -8,7 +8,7 @@ routes.get('/matches/:match_id',match_info);
 routes.get('/scorecomparision/:match_id/:innings_number',comp);
 routes.get('/top3batsman/:match_id/:innings_number',top3batsman);
 routes.get('/top3bowlers/:match_id/:innings_number',top3bowlers);
-routes.get('./player_full_info/:player_id/:type',player_full_info);
+routes.get('/players/:player_id/:type',player_full_info);
 routes.get('/pointstable/:year',pointstable);
 routes.get('/venue',Venue);
 routes.get('/venue/:venue_id',Venue_id);   // Basic Info

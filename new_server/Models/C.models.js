@@ -68,7 +68,7 @@ const player_score_bowl = async(player_id) => {
 
     const query =
         `
-        select match_id,sum(runs_scored) as runs_given,count(out_type) as num_wkts from ball_by_ball where bowler=315 group by match_id
+        select match_id,sum(runs_scored) as runs_given,count(out_type) as num_wkts from ball_by_ball where bowler=$1 group by match_id
         `;
     const todo = await pool.query(query,[player_id]);
     return  todo.rows;

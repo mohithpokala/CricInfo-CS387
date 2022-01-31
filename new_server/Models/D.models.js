@@ -33,7 +33,7 @@ const pointsTable = async(year) => {
         team_id in (team1,team2)
          group by team_id,season_year
         )
-        select team_name,H.r as MATCH,J.w as WON,J.l as LOST,0 as TIED,Round(1.0*F.r/F.ov-1.0*G.r/G.ov,2) as NRR,2*J.w as POINTS,G.s
+        select G.t as team_id,team_name,H.r as MATCH,J.w as WON,J.l as LOST,0 as TIED,Round(1.0*F.r/F.ov-1.0*G.r/G.ov,2) as NRR,2*J.w as POINTS,G.s
         
         from F,G,H,J,team where
         G.t=F.t and F.t=H.t  and J.t=H.t and team.team_id=G.t

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
 
+import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -166,7 +167,7 @@ const Match = () => {
       {
       innings1bat.map( 
         x => { return <TableRow>
-          <TableCell>{x.batter}</TableCell>
+          <TableCell><Link href={"/players/"+x.player_id}> {x.batter}</Link></TableCell>
           <TableCell>{x.runs}</TableCell>
           <TableCell>{x.fours}</TableCell>
           <TableCell>{x.sixes}</TableCell>
@@ -193,7 +194,7 @@ const Match = () => {
       {
       innings1bowl.map( 
         x => { return <TableRow>
-          <TableCell>{x.bowler}</TableCell>
+          <TableCell><Link href={"/players/"+x.player_id}> {x.bowler}</Link></TableCell>
           <TableCell>{x.bowls_bowled}</TableCell>
           <TableCell>{x.runs_given}</TableCell>
           <TableCell>{x.wickets}</TableCell>
@@ -224,7 +225,7 @@ const Match = () => {
       {
       innings2bat.map( 
         x => { return <TableRow>
-          <TableCell>{x.batter}</TableCell>
+          <TableCell><Link href={"/players/"+x.player_id}> {x.batter}</Link></TableCell>
           <TableCell>{x.runs}</TableCell>
           <TableCell>{x.fours}</TableCell>
           <TableCell>{x.sixes}</TableCell>
@@ -251,7 +252,7 @@ const Match = () => {
       {
       innings2bowl.map( 
         x => { return <TableRow>
-          <TableCell>{x.bowler}</TableCell>
+          <TableCell><Link href={"/players/"+x.player_id}> {x.bowler}</Link></TableCell>
           <TableCell>{x.bowls_bowled}</TableCell>
           <TableCell>{x.runs_given}</TableCell>
           <TableCell>{x.wickets}</TableCell>

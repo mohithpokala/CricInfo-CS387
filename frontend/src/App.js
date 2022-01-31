@@ -6,6 +6,8 @@ import Blogs from "./pages/Blogs";
 import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 import Match from "./pages/Match"
+import Player from "./pages/Player"
+import Pointstable from "./pages/Pointstable"
 
 
 
@@ -19,6 +21,8 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="matches" element={<Blogs />} />
           <Route path="/matches/:match_id" element={<Match />}/>
+          <Route path="/players/:player_id" element={<Player />}/>
+          <Route path="/pointstable/:year" element={<Pointstable />}/>
           {/* <Route path="/summary/:match_id" element={<Summary />} /> */}
           <Route path="*" element={<NoPage />} />
         </Route>
