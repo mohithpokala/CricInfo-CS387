@@ -8,6 +8,7 @@ import Blogs from "./pages/Blogs";
 import Contact from "./pages/Contact";
 import Match from "./pages/Match"
 import Player from "./pages/Player"
+import Scorecard from "./pages/Scorecard"
 import Pointstable from "./pages/Pointstable"
 import Navbar from './Components/Navbar';
 import download from './Assets/download.jpg';
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/" element={<Home />}/>
             <Route path="matches" element={<Blogs />} />
             <Route path="/matches/:match_id" element={<Match />}/>
+            <Route path="/scorecard/:match_id" element={<Scorecard />}/>
             <Route path="/players/:player_id" element={<Player />}/>
             <Route path="/pointstable/:year" element={<Pointstable />}/>
           </Routes>

@@ -174,12 +174,18 @@ console.log(x);
   return (
     <>
       {!(innings1bat && innings1bowl && innings2bat && innings2bowl && umpire && matchdet && team1 && team2) ? (
-        <ReactLoading
-          type={"bars"}
+        <div
+        style={{
+            position: 'absolute', left: '50%', top: '50%',
+            transform: 'translate(-50%, -50%)'
+        }}
+        ><ReactLoading
+          
+          type={"cylon"}
           color={"#03fc4e"}
           height={100}
           width={100}
-        />
+        /></div>
       ) : (
         <React.Fragment>
       <h2 style={{textAlign:"center"}}>Match Info</h2>
@@ -231,7 +237,7 @@ console.log(x);
       }
       </table>
       </div>
-      <Slideshow img={batim} fade={true} width={"24%"} ml={"38%"} mt={"52%"} ht={"40vh"} />
+      <Slideshow img={batim} fade={true} width={"24%"} ml={"38%"} mt={"52%"} ht={"50vh"} />
       <div style={{display:"block",width:"50%",position:"absolute",left:"50%"}}>
             <h5 style={{textAlign:"center"}}>
                 Second Innings
@@ -259,9 +265,9 @@ console.log(x);
       </table>
       </div>
       <br></br>
-      <h4 style={{display:"block",top:"140%",position:"absolute",textAlign:"center",width:"100%"}}>Bowling</h4>
+      <h4 style={{display:"block",top:"100%",position:"absolute",textAlign:"center",width:"100%"}}>Bowling</h4>
 
-      <div style={{display:"block",top:"150%",width:"50%",position:"absolute"}}>
+      <div style={{display:"block",top:"200%",width:"50%",position:"absolute"}}>
 
             <table>
             <tr>
@@ -283,8 +289,8 @@ console.log(x);
       }
       </table>
       </div>
-      <Slideshow img={bowlim} fade={true} width={"24%"} ml={"38%"} mt={"148%"} ht={"40vh"} />
-      <div style={{display:"block",top:"150%",width:"50%",position:"absolute",left:"50%"}}>
+      <Slideshow img={bowlim} fade={true} width={"24%"} ml={"38%"} mt={"148%"} ht={"50vh"} />
+      <div style={{display:"block",top:"200%",width:"50%",position:"absolute",left:"50%"}}>
 
             <table>
             <tr>

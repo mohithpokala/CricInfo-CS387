@@ -14,8 +14,8 @@ const Card_comp = (prop) => {
     <Card key={prop.index} className="box" >
         <div style={{display:"block",opacity:0.9,width:"100%",height:"10vh",borderRadius:"4px",backgroundColor:color[parseInt(prop.data.match_winner)-1]}}></div>
         <Card.Body className='boxheader'>
-          <Card.Title classname="tit">{prop.data.team1} vs {prop.data.team2}</Card.Title>
-          <Card.Text classname="venue">{prop.data.venue_name},{prop.data.city_name}</Card.Text>
+          <Card.Title classname="tit" >{prop.data.team1} vs {prop.data.team2}</Card.Title>
+          <Card.Text classname="venue" >{prop.data.venue_name},{prop.data.city_name}</Card.Text>
           <Link href={"/matches/"+prop.data.match_id}>{prop.data.winner+" won by "+prop.data.win_margin+" "+prop.data.win_type}</Link>
         </Card.Body>
     </Card>

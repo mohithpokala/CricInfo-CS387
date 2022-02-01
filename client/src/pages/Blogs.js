@@ -32,6 +32,7 @@ import Card_comp from '../Components/Card'
         />
       );
     });
+    
   
     return <div className="grid">{Data}</div>;
   
