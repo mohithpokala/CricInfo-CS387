@@ -18,7 +18,7 @@ import blank from '../Assets/blank.png'
 import Slideshow from '../Components/Slideshow'
 import { width } from '@mui/system';
 import download from '../Assets/download.jpg'
-
+import '../CSS/rotateimage.css'
 export default function Home() {
   console.log("ngujyjuy");
   const L=[
@@ -83,7 +83,7 @@ export default function Home() {
 
   return (
     <div>
-    <img src={download} style ={{left:"40%",top:"30%",position:"absolute",width:"20%",height:"30%"}}/>
+    <img className ="animate" src={download} style ={{left:"40%",top:"30%",position:"absolute",width:"20%",height:"30%"}}/>
     <Slideshow img={L} fade={true} width={"20vh"} ml={"10%"} mt={"30%"} ht={"20vh"} />
     <Slideshow img={L2} fade={true} width={"20vh"} ml={"80%"} mt={"30%"} ht={"20vh"} /></div>
   );
