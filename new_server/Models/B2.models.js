@@ -2,16 +2,20 @@ const pool = require("./database");
 
 const bats_stats = async(match_id,innings_number)=>{
 
-    const query=`select
+    const query=`
+    	select
     player.player_id,
     player_name as Batter,
-    sum(runs_scored) as Runs,
-    sum(CASE WHEN runs_scored=4 THEN 1 else 0 END) as fours,
-    sum(CASE WHEN runs_scored=6 THEN 1 else 0 END) as sixes,
-    count(striker) as Balls_faced
-    from ball_by_ball,player,match
+    sum(CASE WHEN player.player_id=striker THEN runs_scored else 0 END) as Runs,
+    sum(CASE WHEN runs_scored=4 AND player.player_id=striker THEN 1 else 0 END) as fours,
+    sum(CASE WHEN runs_scored=6 AND player.player_id=striker THEN 1 else 0 END) as sixes,
+    sum(CASE WHEN player.player_id=striker THEN 1 else 0 END) as Balls_faced
+    from ball_by_ball,player,match,player_match
     where
-    striker=player_id and match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2
+    match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2 and 
+	player_match.match_id=match.match_id and player.player_id=player_match.player_id
+	and
+	((innings_no=1 and team1=player_match.team_id) or (innings_no=2 and team2=player_match.team_id))
     group by player_name,player.player_id
     order by runs desc,Balls_faced asc
     `;
@@ -40,7 +44,7 @@ const bowl_stats = async(match_id,innings_number)=>{
 const match_info = async(match_id)=>{
     const query=
     `select 
-        X.team_name as team1,Y.team_name as team2,toss_winner,toss_name,venue_name,city_name,season_year,X.team_name,Y.team_name
+        X.team_name as team1name,Y.team_name as team2name,team1,team2,toss_winner,toss_name,venue_name,city_name,season_year
         from match,venue,team as X,team as Y
         where 
         venue.venue_id=match.venue_id and
