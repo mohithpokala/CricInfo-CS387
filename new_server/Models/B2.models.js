@@ -44,13 +44,13 @@ const bowl_stats = async(match_id,innings_number)=>{
 
 const match_info = async(match_id)=>{
     const query=
-    `select distinct
-    X.team_name as team1name,Y.team_name as team2name,team1,team2,toss_winner,toss_name,venue_name,city_name,season_year
-    from match,venue,team as X,team as Y,team as Z,team as Q
+    `select distinct toss_name,
+    X.team_name as team1name,Y.team_name as team2name,team1,team2,toss_winner,toss_name,venue_name,city_name,season_year,P.team_name as innings1_team,Z.team_name as innings2_team
+    from match,venue,team as X,team as Y,team as Z,team as P
     where 
     venue.venue_id=match.venue_id and
-    X.team_id=team1 and Z.team_id in (X.team_id,Y.team_id) and Q.team_id in (X.team_id,Y.team_id)
-    and Z.team_id  in (X.team_id,Y.team_id) and
+    X.team_id=team1  and Z.team_id in (team1,team2) and P.team_id in (team1,team2)  and Z.team_id!=P.team_id and
+	((P.team_id=toss_winner and toss_name='bat') or (Z.team_id=toss_winner and toss_name='field') ) and
     Y.team_id=team2 and match_id=$1
     `;
     const todo = await pool.query(query,[match_id]);

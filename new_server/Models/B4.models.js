@@ -5,7 +5,7 @@ const tbat = async(match_id,innings_number) => {
     const query =
         `
             select 
-            player_name,sum(runs_scored) as runs_scored,
+            player.player_id,player_name,sum(runs_scored) as runs_scored,
             RANK() OVER(
                 ORDER BY sum(runs_scored) desc ,
                 count(player_name) asc,
@@ -17,7 +17,7 @@ const tbat = async(match_id,innings_number) => {
             player.player_id=ball_by_ball.striker 
             and 
             match_id=$1 and innings_no=$2
-            group by player_name
+            group by player_name,player.player_id
             order by ranks
             limit 3
         `;
@@ -29,11 +29,11 @@ const tbowl = async(match_id,innings_number) => {
 
     const query =
         `
-		    select runs_given,wkts_taken,ranks,balls_bowled 
+		    select player_id,player_name,runs_given,wkts_taken,ranks,balls_bowled 
 		    from
 		    (	
                 select 
-                player_name,sum(runs_scored) as runs_given,
+                player.player_id,player_name,sum(runs_scored) as runs_given,
                 count(out_type) as wkts_taken,
                 RANK() OVER(
                     ORDER BY 
@@ -46,8 +46,8 @@ const tbowl = async(match_id,innings_number) => {
                 where 
                 player.player_id=ball_by_ball.bowler 
                 and 
-                match_id=501204 and innings_no=2
-                group by player_name
+                match_id=$1 and innings_no=$2
+                group by player_name,player.player_id
 			    order by ranks
                 limit 3
 		    ) as F where wkts_taken>=1
