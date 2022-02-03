@@ -17,10 +17,23 @@ import dc2 from '../Assets/rpsg.png'
 import blank from '../Assets/blank.png'
 import Slideshow from '../Components/Slideshow'
 import { width } from '@mui/system';
-import download from '../Assets/download.jpg'
+
+import h1 from '../Assets/h1.jpg'
+import h2 from '../Assets/h2.jpg'
+import h3 from '../Assets/h3.jpg'
+import h4 from '../Assets/h4.jpg'
+import h5 from '../Assets/h5.jpg'
+import h6 from '../Assets/h6.jpg'
+import h7 from '../Assets/h7.jpg'
+import h8 from '../Assets/h8.jpg'
+import h9 from '../Assets/h9.jpg'
+import h10 from '../Assets/h10.jpg'
+
 import '../CSS/rotateimage.css'
 export default function Home() {
   console.log("ngujyjuy");
+  const hdim=[{im:h1},{im:h2},{im:h3},{im:h4},{im:h5},{im:h6},{im:h7},{im:h8},{im:h9},{im:h10}];
+  console.log(hdim);
   const L=[
     {im:srh},
     {im:blank},
@@ -46,7 +59,7 @@ export default function Home() {
     {im:blank},
     {im:ktk},
     {im:blank},
-    {im:dc},
+    {im:dc2},
   ]
 
   const L2=[
@@ -55,7 +68,7 @@ export default function Home() {
     {im:blank},
     {im:dd},
     {im:blank},
-    {im:dc},
+    {im:dc2},
     {im:blank},
     {im:rr},
     {im:blank},
@@ -82,9 +95,8 @@ export default function Home() {
   const prop = {}
 
   return (
-    <div>
-    <img className ="animate" src={download} style ={{left:"40%",top:"30%",position:"absolute",width:"20%",height:"30%"}}/>
-    <Slideshow img={L} fade={true} width={"20vh"} ml={"10%"} mt={"30%"} ht={"20vh"} />
-    <Slideshow img={L2} fade={true} width={"20vh"} ml={"80%"} mt={"30%"} ht={"20vh"} /></div>
+    <div style={{backgroundColor:"grey",width:"100%",height:"100%",position:"absolute"}}>
+      <Slideshow img={hdim} fade={true} width={"80%"} ml={"10%"} mt={"0%"} ht={"90vh"} />
+    </div>
   );
 }

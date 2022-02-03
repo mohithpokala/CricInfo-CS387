@@ -32,6 +32,9 @@ import dd from '../Assets/dd.png'
 import dc from '../Assets/dc.png'
 import rr from '../Assets/rr.png'
 import rps from '../Assets/rpsg.png'
+import download from '../Assets/download.jpg'
+import '../CSS/rotateimage.css'
+
 const Scorecard = (props) => {
   const L=[
     kkr,kkr,rcb,csk,kxip,rr,dd,mi,dc,ktk,pwi,srh,rps,gl
@@ -183,18 +186,7 @@ const Scorecard = (props) => {
   return (
     <>
       {!(innings1bat && misc && innings1bowl && innings2bat && innings2bowl && umpire && matchdet && team1 && team2) ? (
-        <div
-        style={{
-            position: 'absolute', left: '50%', top: '50%',
-            transform: 'translate(-50%, -50%)'
-        }}
-        ><ReactLoading
-          
-          type={"bubbles"}
-          color={"orange"}
-          height={100}
-          width={100}
-        /></div>
+        <img className ="animate" src={download} style ={{left:"30%",top:"30%",position:"absolute",width:"40%",height:"40%"}}/>
       ) : (
         <React.Fragment>
       <h2 style={{textAlign:"center"}}>Match Info</h2>
