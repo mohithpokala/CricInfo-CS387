@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import '../CSS/Navbar.css';
 const Match=()=>{
     const match_id=useParams().match_id;
-    const [x,setX]= useState(2);
+    const [x,setX]= useState(0);
     const f0=()=>{
         setX(0);
     }
@@ -19,10 +19,10 @@ const Match=()=>{
     }
     return (
     <div className="home_page">
-      <div className='navbar' style={{width:"30%",height:"8%",top:"0%",left:"50%"}}>
+      <div className='navbar' style={{width:"30%",height:"8%",top:"0%",left:"45%"}}>
         <ul>
             <li onClick={f0} style={{backgroundColor:x==0?"green":"#333",color:"white"}}><a >Scorecard</a></li>
-            <li onClick={f1} style={{backgroundColor:x==1?"green":"#333",color:"white"}}><a >Overs</a></li>
+            <li onClick={f1} style={{backgroundColor:x==1?"green":"#333",color:"white"}}><a >Comparision</a></li>
             <li onClick={f2} style={{backgroundColor:x==2?"green":"#333",color:"white"}}><a >Summary</a></li>
         </ul>
       </div>

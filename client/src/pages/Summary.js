@@ -103,7 +103,7 @@ const Summary = (props) => {
     console.log(matchdet[0]);
   return (
     <div style={{width:"100%",top:"8%",position:"fixed",height:"92%",overflowY:"scroll"}}>
-        <img src={bkg_summary} style={{width:"100%",position:"absolute",height:"100%",top:"0%",left:"0%"}}/>
+        {/* <img src={bkg_summary} style={{width:"100%",position:"absolute",height:"100%",top:"0%",left:"0%"}}/> */}
       {!(ta1 && ta2 && tb1 && tb2 && misc && matchdet ) ? (
         <div
         style={{

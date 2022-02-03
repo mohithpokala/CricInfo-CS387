@@ -3,11 +3,62 @@ import React, {useState, useEffect} from 'react';
 import ReactLoading from "react-loading";
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
+import { Doughnut, Pie } from "react-chartjs-2";
+import { chartColors } from "./colors";
 import im3 from '../Assets/im3.jpg'
+
+
+
+
+
+
+const options = {
+  legend: {
+    display: false,
+    position: "right"
+  },
+  elements: {
+    arc: {
+      borderWidth: 0
+    }
+  }
+};
+
+const pieOptions = {
+  legend: {
+    display: true,
+    position: "right",
+    legendCallback: function(chart) {
+      // Return the HTML string here.
+      console.log(chart);
+      return [
+        <ul>
+          <li>z</li>
+          <li>zzzz</li>
+          <li>ppp</li>
+          <li>adasda</li>
+        </ul>
+      ];
+    }
+  },
+  elements: {
+    arc: {
+      borderWidth: 0
+    }
+  }
+};
+
+
+
+
+
+
 const Score_comp = (props) => {
 
     const [chartData, setChartData] = useState({});
     const [done, setdone] = useState(false);
+    const [done2, setdone2] = useState(false);
+    const [done3, setdone3] = useState(false);
 
     const match_id = props.match_id;
 
@@ -17,6 +68,76 @@ const Score_comp = (props) => {
     const [y2,setY2] = useState([]);
     const [y3,setY3] = useState([]);
     const [y4,setY4] = useState([]);
+
+    const [pie1,setPie1]=useState([]);
+    const [pie2,setPie2]=useState([]);
+
+    const data = {
+      maintainAspectRatio: false,
+      responsive: false,
+      labels: ["a", "b", "c", "d"],
+      datasets: [
+        {
+          data: [300, 50, 100, 50],
+          backgroundColor: chartColors,
+          hoverBackgroundColor: chartColors
+        }
+      ]
+    };
+    
+    
+
+    useEffect(() => {
+      setTimeout(() => {
+          fetch("http://localhost:5000/piechart/"+match_id+"/1")
+              .then((res) => res.json())
+              .then((json) => {
+              setPie1(
+                {
+                  maintainAspectRatio: false,
+                  responsive: false,
+                  labels: ["Extra Runs", "Sixes", "Fours", "Threes","Twos","Ones"],
+                  datasets: [
+                    {
+                      data: [json[0].extra_runs,json[0].sixes,json[0].fours,json[0].threes,json[0].twos,json[0].ones],
+                      backgroundColor: chartColors,
+                      hoverBackgroundColor: chartColors
+                    }
+                  ]
+                }
+
+                );
+                setdone2(true);
+              });
+      }, 2000);
+  }, []);
+
+
+  
+  useEffect(() => {
+    setTimeout(() => {
+        fetch("http://localhost:5000/piechart/"+match_id+"/2")
+            .then((res) => res.json())
+            .then((json) => {
+            setPie2(
+              {
+                maintainAspectRatio: false,
+                responsive: false,
+                labels: ["Extra Runs", "Sixes", "Fours", "Threes","Twos","Ones"],
+                datasets: [
+                  {
+                    data: [json[0].extra_runs,json[0].sixes,json[0].fours,json[0].threes,json[0].twos,json[0].ones],
+                    backgroundColor: chartColors,
+                    hoverBackgroundColor: chartColors
+                  }
+                ]
+              }
+
+              );
+              setdone3(true);
+            });
+    }, 2000);
+}, []);
 
     useEffect(() => {
       setTimeout(() => {
@@ -116,11 +237,14 @@ const Score_comp = (props) => {
 function range(start, end) {
   return Array(end - start + 1).fill().map((_, idx) => start + idx)
 }
+
+let chartInstance = null;
+
   return (
     <div style={{width:"100%",top:"8%",position:"fixed",height:"92%",overflowY:"scroll"}}>
-      
-      <img src={im3} style={{width:"100%",position:"absolute",height:"110%",top:"0%",left:"0%"}}/>
-      {!(matchdet && done)? (
+{/*       
+      <img src={im3} style={{width:"100%",position:"absolute",height:"110%",top:"0%",left:"0%"}}/> */}
+      {!(matchdet && done && done2 && done3)? (
         
         <div
         style={{
@@ -138,7 +262,7 @@ function range(start, end) {
         <React.Fragment>
           <br></br><br></br><br></br>
 
-      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"30%",backgroundColor:"yellow",float:"center",left:"25%"}}>
+      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"20%",backgroundColor:"white",float:"center",left:"25%"}}>
       <h4 style={{display:"block",top:"20%",textAlign:"center",width:"100%"}}>Score Comparision</h4>
 
           <Chart 
@@ -191,24 +315,95 @@ function range(start, end) {
                 color:'red',
                 font:'bold 15px'
             },
-            scales: 
-            { y: 
+            scales: [
                 {
                   title: { 
-                    display:true,
-                    text: '$/kWh'
-                  },
-                  ticks: {
-                    callback: function (value, index, values) {return value;}}}
-          }
+                    
+                              display:true,
+                              text: 'Runs Scored',
+                              color:'red',
+                              font:'bold 15px'
+                            }
+                }
+
+
+            ]
+          //    {y: 
+          //       {
+          //         title: { 
+                    
+          //           display:true,
+          //           text: 'Runs Scored',
+          //           color:'red',
+          //           font:'bold 15px'
+          //         },
+          //         ticks: {
+          //           callback: function (value, index, values) {return value;}}}
+          // }
         } }}></Chart>
-        <p>X-axis:Overs  Y-axis:Runs Scored <br></br>The dots indicate fall of wickets       <br></br>  <b>{matchdet[0].match_winner==matchdet[0].innings1_team?matchdet[0].innings1_team:matchdet[0].innings2_team} won by {matchdet[0].win_margin} {matchdet[0].win_type} </b>
+        <p>X-axis:Overs  Y-axis:Runs Scored <br></br>The dots indicate fall of wickets       <br></br>  <b><font color='white'>{matchdet[0].match_winner==matchdet[0].innings1_team?matchdet[0].innings1_team:matchdet[0].innings2_team} won by {matchdet[0].win_margin} {matchdet[0].win_type}</font> </b>
 </p>
+
+
+<div style={styles.relative}>
+
+
+        <div style={styles.pieContainer}>
+          <h1>{matchdet[0].team1name}</h1>
+          <Pie
+            data={pie1}
+            options={options}
+            ref={input => {
+              chartInstance = input;
+            }}
+          />
+          
+        </div>
+
+        <div style={styles.pieContainer2}>
+          <h1>{matchdet[0].team2name}</h1>
+          <Pie
+            data={pie2}
+            options={options}
+            ref={input => {
+              chartInstance = input;
+            }}
+          />
+          
+        </div>
+
+        <div id="legend" />
+      </div>
         </div>
         </React.Fragment>
       )}
     </div>
   );
       }
+      const styles = {
+        pieContainer: {
+          width: "50%",
+          height: "50%",
+          top: "60%",
+          left: "20%",
+          position: "absolute",
+          transform: "translate(-50%, -50%)"
+        },
+        pieContainer2: {
+          width: "50%",
+          height: "50%",
+          top: "60%",
+          left: "80%",
+          position: "absolute",
+          transform: "translate(-50%, -50%)"
+        },
+
+
+        relative: {
+          position: "relative"
+        }
+      };
+      
+
 
 export default Score_comp;
