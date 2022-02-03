@@ -5,7 +5,23 @@ import 'chart.js/auto';
 import bkg_summary from '../Assets/bkg_summ.jpg';
 import '../CSS/Match.css';
 import Link from '@mui/material/Link';
+import srh from '../Assets/srh.png'
+import csk from '../Assets/csk.png'
+import kkr from '../Assets/kkr.png'
+import kxip from '../Assets/kxip.png'
+import pwi from '../Assets/pwi.png'
+import mi from '../Assets/mi.png'
+import gl from '../Assets/gl.png'
+import rcb from '../Assets/rcb.png'
+import ktk from '../Assets/ktk.png'
+import dd from '../Assets/dd.png'
+import dc from '../Assets/dc.png'
+import rr from '../Assets/rr.png'
+import rps from '../Assets/rpsg.png'
 const Summary = (props) => {
+  const L=[
+    kkr,kkr,rcb,csk,kxip,rr,dd,mi,dc,ktk,pwi,srh,rps,gl
+  ]
 
     const [matchdet, setMatchdet]=useState(false);
     const [misc, setMisc] =useState(false);
@@ -69,7 +85,9 @@ const Summary = (props) => {
                 }); 
         }, 2000);
     }, []);
-
+    function range(start, end) {
+      return Array(end - start + 1).fill().map((_, idx) => start + idx)
+    }
     useEffect(() => {
         setTimeout(() => {
             fetch("http://localhost:5000/top3bowlers/"+match_id+"/2")
@@ -79,8 +97,10 @@ const Summary = (props) => {
                 }); 
         }, 2000);
     }, []);
+    const [color,setColor]=useState(["purple","crimson","yellow","firebrick","indigo","blue","dodgerBlue","grey","lightSalmon","black","orange","violet","orangeRed"]);
 
-    
+    if(matchdet)
+    console.log(matchdet[0]);
   return (
     <div style={{width:"100%",top:"8%",position:"fixed",height:"92%",overflowY:"scroll"}}>
         <img src={bkg_summary} style={{width:"100%",position:"absolute",height:"100%",top:"0%",left:"0%"}}/>
@@ -111,7 +131,7 @@ const Summary = (props) => {
             <br></br>
             <table style={{display:"absolute",width:"50%",left:"0%",top:"14vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
             <tr >
-              <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings1_team}</td>
+              <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings1_team} <img src={L[matchdet[0].b1]} style={{height:"4vh",width:"4vh"}}/></td>
               <td style={{color:"black",width:"80%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='bat'?'TOSS':''}</td>
             </tr>
               {
@@ -129,9 +149,9 @@ const Summary = (props) => {
       
       </table>
       <table style={{display:"absolute",width:"50%",left:"50%",top:"14vh",borderBottom:"none",borderLeft:"none",borderTop:"none"}}> 
-                <tr>
+                <tr style={{height:"5.3vh"}}>
                 <td style={{width:"0%"}}></td>
-              <td style={{color:"black",width:"40%",height:"1vh",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
+              <td style={{color:"black",width:"40%",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
             </tr>
             
               {
@@ -150,10 +170,10 @@ const Summary = (props) => {
         
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"0%",top:"32.5vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
+      <table style={{display:"absolute",width:"50%",left:"0%",top:"32.9vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
             <tr >
-              <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings2_team}</td>
-              <td style={{color:"black",width:"80%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='field'?'TOSS':''}</td>
+              <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings2_team} <img src={L[matchdet[0].b2]} style={{height:"4vh",width:"4vh"}}/></td>
+              <td style={{color:"black",width:"40%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='field'?'TOSS':''}</td>
             </tr>
               {
                 range(0,2).map( 
@@ -172,8 +192,8 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"50%",top:"32.5vh",borderTop:"none",borderLeft:"none"}}> 
-                <tr>
+      <table style={{display:"absolute",width:"50%",left:"50%",top:"32.9vh",borderTop:"none",borderLeft:"none"}}> 
+                <tr style={{height:"5.3vh"}}>
                 <td style={{width:"0%"}}></td>
               <td style={{color:"black",width:"40%",height:"1vh",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
             </tr>
@@ -194,7 +214,7 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"100%",left:"00%",top:"51vh",borderTop:"none"}}> 
+      <table style={{display:"absolute",width:"100%",left:"00%",top:"51.3vh",borderTop:"none"}}> 
       <tr><td>
       {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
       </td></tr></table>

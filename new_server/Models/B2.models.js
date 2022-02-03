@@ -45,7 +45,7 @@ const bowl_stats = async(match_id,innings_number)=>{
 const match_info = async(match_id)=>{
     const query=
     `select distinct toss_name,
-    X.team_name as team1name,Y.team_name as team2name,team1,team2,match_winner,win_type,win_margin,toss_winner,toss_name,venue_name,city_name,season_year,P.team_name as innings1_team,Z.team_name as innings2_team
+    X.team_name as team1name,Y.team_name as team2name,team1,team2,match_winner,win_type,win_margin,toss_winner,toss_name,venue_name,city_name,season_year,P.team_name as innings1_team,Z.team_name as innings2_team,P.team_id as b1,Z.team_id as b2
     from match,venue,team as X,team as Y,team as Z,team as P
     where 
     venue.venue_id=match.venue_id and

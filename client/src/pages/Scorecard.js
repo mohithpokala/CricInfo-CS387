@@ -19,9 +19,23 @@ import bowl5 from '../Assets/bowl5.png'
 import bowl6 from '../Assets/bowl6.png'
 import bowl7 from '../Assets/bowl6.png'
 import Slideshow  from '../Components/Slideshow';
-
+import srh from '../Assets/srh.png'
+import csk from '../Assets/csk.png'
+import kkr from '../Assets/kkr.png'
+import kxip from '../Assets/kxip.png'
+import pwi from '../Assets/pwi.png'
+import mi from '../Assets/mi.png'
+import gl from '../Assets/gl.png'
+import rcb from '../Assets/rcb.png'
+import ktk from '../Assets/ktk.png'
+import dd from '../Assets/dd.png'
+import dc from '../Assets/dc.png'
+import rr from '../Assets/rr.png'
+import rps from '../Assets/rpsg.png'
 const Scorecard = (props) => {
-
+  const L=[
+    kkr,kkr,rcb,csk,kxip,rr,dd,mi,dc,ktk,pwi,srh,rps,gl
+  ]
   const batim=[
     {im:bat1},
     {im:bat2},
@@ -98,7 +112,9 @@ const Scorecard = (props) => {
                             });
         }, 2000);
     }, []);
-
+    function range(start, end) {
+      return Array(end - start + 1).fill().map((_, idx) => start + idx)
+    }
     useEffect(() => {
         setTimeout(() => {
             if(!team2)
@@ -182,13 +198,17 @@ const Scorecard = (props) => {
       ) : (
         <React.Fragment>
       <h2 style={{textAlign:"center"}}>Match Info</h2>
-      <b>{matchdet? "Match":''}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>:</b>{matchdet?match_id+" ,  "+matchdet[0].team1name + " vs "+ matchdet[0].team2name + " ,"+ matchdet[0].season_year:''}
+      <img src={L[matchdet[0].team1]} style={{left:"38%",height:"20%",width:"9%",position:"absolute"}}/> <b style={{textAlign:"center",width:"100%",top:"15%",position:"absolute"}}> Vs </b>
+      <img src={L[matchdet[0].team2]} style={{left:"52%",height:"20%",width:"9%",position:"absolute"}}/>
+<br></br><br></br>
+        <div style={{width:"100%",height:"90%",top:"40%",position:"absolute",textAlign:"center"}}>
+      <b>{matchdet? "Match":''}</b><b>:</b>{matchdet?match_id+" ,  "+matchdet[0].team1name + " vs "+ matchdet[0].team2name + " ,"+ matchdet[0].season_year:''}
       <br/>
-      <b>{matchdet? "Toss":''}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name='runs')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
+      <b>{matchdet? "Toss":''}</b><b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name='runs')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
       <br/>
-      <b>{matchdet? "Venue":''}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>:</b> {matchdet?matchdet[0].venue_name+" , "+matchdet[0].city_name:''} 
+      <b>{matchdet? "Venue":''}</b><b>:</b> {matchdet?matchdet[0].venue_name+" , "+matchdet[0].city_name:''} 
       <br/>
-      <b>{matchdet? "Umpires":''}</b> &nbsp;&nbsp;<b>:</b>
+      <b>{matchdet? "Umpires":''}</b><b>:</b>
       {umpire?umpire[0].umpire_name+" , "+umpire[1].umpire_name+" , "+umpire[2].umpire_name:''}<br/><br/>
       <b>
         Playing XI:
@@ -202,7 +222,6 @@ const Scorecard = (props) => {
       {team2 && matchdet?team2[0].player_name+" , "+team2[1].player_name+" , "+team2[2].player_name+" , "+team2[3].player_name+" , "+team2[4].player_name+" , "+team2[5].player_name+" , "+team2[6].player_name+" , "+team2[7].player_name+" , "+team2[8].player_name+" , "+team2[9].player_name+" , "+team2[10].player_name:''}
       <br/><br/>
       <h2 style={{textAlign:"center"}}>Scorecard</h2>
-      <h4 style={{textAlign:"center"}}>Batting</h4>
 
           <div style={{display:"block",width:"50%",position:"absolute"}}>
             <h5 style={{textAlign:"center"}}>
@@ -230,7 +249,7 @@ const Scorecard = (props) => {
       }
       </table>
       </div>
-      <Slideshow img={batim} fade={true} width={"24%"} ml={"38%"} mt={"58%"} ht={"40vh"} />
+      <Slideshow img={batim} fade={true} width={"24%"} ml={"38%"} mt={"52%"} ht={"40vh"} />
       <div style={{display:"block",width:"50%",position:"absolute",left:"50%"}}>
             <h5 style={{textAlign:"center"}}>
                 Second Innings : {matchdet[0].team1!=matchdet[0].toss_winner ? matchdet[0].team1name : matchdet[0].team2name}
@@ -258,9 +277,8 @@ const Scorecard = (props) => {
       </table>
       </div>
       <br></br>
-      <h4 style={{display:"block",top:"130%",position:"absolute",textAlign:"center",width:"100%"}}>Bowling</h4>
 
-      <div style={{display:"block",top:"140%",width:"50%",position:"absolute",height:"80%"}}>
+      <div style={{display:"block",top:"118%",width:"50%",position:"absolute",height:"80%"}}>
 
             <table>
             <tr>
@@ -269,21 +287,23 @@ const Scorecard = (props) => {
               <td>Runs Given</td>
               <td>Wickets</td></tr>
               {
-                innings1bowl.map( 
-                  x => { return <tr>
-                  <td><Link href={"/players/"+x.player_id} style={{color:"black",textDecoration:"none"}}> {x.bowler}</Link></td>
-                  <td>{x.bowls_bowled}</td>
-                  <td>{x.runs_given}</td>
-                  <td>{x.wickets}</td>
-          
-              </tr>
-          }
+                range(0,10).map( 
+                  x => { return ((innings1bowl.length>x)?(<tr>
+                                      <td><Link href={"/players/"+innings1bowl[x].player_id} style={{color:"black",textDecoration:"none"}}> {innings1bowl[x].bowler}</Link></td>
+                  <td>{innings1bowl[x].bowls_bowled}</td>
+                  <td>{innings1bowl[x].runs_given}</td>
+                  <td>{innings1bowl[x].wickets}</td></tr>):(<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>));
+                  
+          }          
         )
       }
+      <tr><td>
+        <b>Extras</b> </td><td>&nbsp;</td><td>&nbsp;</td><td>{misc[0].extra1} </td></tr>
+      <tr><td><b>Total </b></td><td>&nbsp;</td><td>&nbsp;</td><td>{misc[0].total1}/{misc[0].wkts1} </td></tr>
       </table>
       </div>
-      <Slideshow img={bowlim} fade={true} width="24%" ml="38%" mt="140%" ht="30vh" />
-      <div style={{display:"block",top:"140%",width:"50%",position:"absolute",left:"50%"}}>
+      <Slideshow img={bowlim} fade={true} width="24%" ml="38%" mt="110%" ht="40vh" />
+      <div style={{display:"block",top:"118%",width:"50%",position:"absolute",left:"50%"}}>
 
             <table>
             <tr>
@@ -292,34 +312,24 @@ const Scorecard = (props) => {
               <td>Runs Given</td>
               <td>Wickets</td></tr>
               {
-                innings2bowl.map( 
-                  x => { return <tr>
-                  <td><Link href={"/players/"+x.player_id} style={{color:"black",textDecoration:"none"}}> {x.bowler}</Link></td>
-                  <td>{x.bowls_bowled}</td>
-                  <td>{x.runs_given}</td>
-                  <td>{x.wickets}</td>
+                range(0,10).map( 
+                  x => { return ((innings2bowl.length>x)?(<tr>
+                                      <td><Link href={"/players/"+innings2bowl[x].player_id} style={{color:"black",textDecoration:"none"}}> {innings2bowl[x].bowler}</Link></td>
+                  <td>{innings2bowl[x].bowls_bowled}</td>
+                  <td>{innings2bowl[x].runs_given}</td>
+                  <td>{innings2bowl[x].wickets}</td></tr>):(<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>));
           
-          </tr>
           }
         )
       }
+      <tr><td>
+        <b>Extras</b> </td><td>&nbsp;</td><td>&nbsp;</td><td>{misc[0].extra2} </td></tr>
+      <tr><td><b>Total </b></td><td>&nbsp;</td><td>&nbsp;</td><td>{misc[0].total2}/{misc[0].wkts2} </td></tr>
       </table>
-      
       </div>
 
-      <div style={{display:"block",top:"175%",width:"50%",position:"absolute",left:"20%"}}>
-        
-        <br></br>
-      
-      <h5><b>Extra runs :{misc[0].extra1} </b></h5>
-      <h5><b>Total :{misc[0].total1}/{misc[0].wkts1} </b></h5>
-      </div>
-      <div style={{display:"block",top:"175%",width:"20%",position:"absolute",left:"70%"}}><br></br>
-      <h5><b>Extra runs :{misc[0].extra2} </b></h5>
-      <h5><b>Total :{misc[0].total2}/{misc[0].wkts2} </b></h5>
-      </div>
-      <h3 style={{display:"block",top:"190%",width:"100%",position:"absolute",textAlign:"center"}}>          {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
-</h3>
+      <h3 style={{display:"block",top:"200%",width:"100%",position:"absolute",textAlign:"center"}}>          {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
+</h3></div>
     </React.Fragment>
       )}
     </>
