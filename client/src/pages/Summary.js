@@ -92,8 +92,8 @@ const Summary = (props) => {
         }}
         ><ReactLoading
           
-          type={"cylon"}
-          color={"white"}
+          type={"bubbles"}
+          color={"orange"}
           height={100}
           width={100}
         /></div>
@@ -112,7 +112,7 @@ const Summary = (props) => {
             <table style={{display:"absolute",width:"50%",left:"0%",top:"14vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
             <tr >
               <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings1_team}</td>
-              <td style={{color:"black",width:"80%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='runs'?'TOSS':''}</td>
+              <td style={{color:"black",width:"80%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='bat'?'TOSS':''}</td>
             </tr>
               {
                 range(0,2).map( 
@@ -153,7 +153,7 @@ const Summary = (props) => {
       <table style={{display:"absolute",width:"50%",left:"0%",top:"32.5vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
             <tr >
               <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings2_team}</td>
-              <td style={{color:"black",width:"80%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='runs'?'':'TOSS'}</td>
+              <td style={{color:"black",width:"80%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='field'?'TOSS':''}</td>
             </tr>
               {
                 range(0,2).map( 
@@ -194,6 +194,10 @@ const Summary = (props) => {
       }
       
       </table>
+      <table style={{display:"absolute",width:"100%",left:"00%",top:"51vh",borderTop:"none"}}> 
+      <tr><td>
+      {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
+      </td></tr></table>
       </div>
     </React.Fragment>
       )}

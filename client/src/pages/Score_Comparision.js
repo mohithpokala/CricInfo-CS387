@@ -32,10 +32,10 @@ const Score_comp = (props) => {
     setTimeout(() => {
         const p=matchdet?matchdet[0].team1name:'dummy';
         const q=matchdet?matchdet[0].team2name:'dummy';
-        let runs1 = [];
-        let runs2 = [];
-        let wkts1 = [];
-        let wkts2 = [];
+        let runs1 = [0];
+        let runs2 = [0];
+        let wkts1 = [{x:0,y:0}];
+        let wkts2 = [{x:0,y:0}];
         fetch("http://localhost:5000/scorecomparision/"+match_id+"/2")
             .then((res) => res.json())
             .then((json) => {
@@ -129,8 +129,8 @@ function range(start, end) {
         }}
         ><ReactLoading
           
-          type={"cylon"}
-          color={"white"}
+          type={"bubbles"}
+          color={"orange"}
           height={100}
           width={100}
         /></div>
@@ -138,12 +138,12 @@ function range(start, end) {
         <React.Fragment>
           <br></br><br></br><br></br>
 
-      <div style={{position:"absolute",width:"50%",height:"65%",top:"33%",backgroundColor:"yellow",float:"center",left:"25%"}}>
+      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"30%",backgroundColor:"yellow",float:"center",left:"25%"}}>
       <h4 style={{display:"block",top:"20%",textAlign:"center",width:"100%"}}>Score Comparision</h4>
 
           <Chart 
           data={{
-            labels : range(1,20),
+            labels : range(0,20),
             datasets: [
               {
                 type :"line",
@@ -202,6 +202,8 @@ function range(start, end) {
                     callback: function (value, index, values) {return value;}}}
           }
         } }}></Chart>
+        <p>X-axis:Overs  Y-axis:Runs Scored <br></br>The dots indicate fall of wickets       <br></br>  <b>{matchdet[0].match_winner==matchdet[0].innings1_team?matchdet[0].innings1_team:matchdet[0].innings2_team} won by {matchdet[0].win_margin} {matchdet[0].win_type} </b>
+</p>
         </div>
         </React.Fragment>
       )}

@@ -174,8 +174,8 @@ const Scorecard = (props) => {
         }}
         ><ReactLoading
           
-          type={"cylon"}
-          color={"#03fc4e"}
+          type={"bubbles"}
+          color={"orange"}
           height={100}
           width={100}
         /></div>
@@ -184,7 +184,7 @@ const Scorecard = (props) => {
       <h2 style={{textAlign:"center"}}>Match Info</h2>
       <b>{matchdet? "Match":''}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>:</b>{matchdet?match_id+" ,  "+matchdet[0].team1name + " vs "+ matchdet[0].team2name + " ,"+ matchdet[0].season_year:''}
       <br/>
-      <b>{matchdet? "Toss":''}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>:</b>{matchdet?(matchdet[0].team1==matchdet[0].toss_winner ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
+      <b>{matchdet? "Toss":''}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name='runs')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
       <br/>
       <b>{matchdet? "Venue":''}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>:</b> {matchdet?matchdet[0].venue_name+" , "+matchdet[0].city_name:''} 
       <br/>
@@ -308,15 +308,18 @@ const Scorecard = (props) => {
       </div>
 
       <div style={{display:"block",top:"175%",width:"50%",position:"absolute",left:"20%"}}>
+        
         <br></br>
+      
       <h5><b>Extra runs :{misc[0].extra1} </b></h5>
-      <h5><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Total :{misc[0].total1}/{misc[0].wkts1} </b></h5>
+      <h5><b>Total :{misc[0].total1}/{misc[0].wkts1} </b></h5>
       </div>
       <div style={{display:"block",top:"175%",width:"20%",position:"absolute",left:"70%"}}><br></br>
       <h5><b>Extra runs :{misc[0].extra2} </b></h5>
-      <h5><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Total :{misc[0].total2}/{misc[0].wkts2} </b></h5>
+      <h5><b>Total :{misc[0].total2}/{misc[0].wkts2} </b></h5>
       </div>
-      
+      <h3 style={{display:"block",top:"190%",width:"100%",position:"absolute",textAlign:"center"}}>          {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
+</h3>
     </React.Fragment>
       )}
     </>
