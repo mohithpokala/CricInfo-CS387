@@ -1,5 +1,5 @@
 const express =require('express');
-const {player_full_info,scorecard_data,matches_info,match_info,comp,top3batsman,top3bowlers,pointstable,Venue,Venue_id,Venueb_id,Venuec_id,piechart} = require('../Controllers');
+const {sy,player_full_info,scorecard_data,matches_info,match_info,comp,top3batsman,top3bowlers,pointstable,Venue,Venue_id,Venueb_id,Venuec_id,piechart} = require('../Controllers');
 const routes = express.Router();
 
 routes.get('/scorecard/:arg1/:arg2/:arg3',scorecard_data);
@@ -11,6 +11,7 @@ routes.get('/top3bowlers/:match_id/:innings_number',top3bowlers);
 routes.get('/piechart/:match_id/:innings_number',piechart);
 routes.get('/players/:player_id/:type',player_full_info);
 routes.get('/pointstable/:year',pointstable);
+routes.get('/season_years',sy);
 routes.get('/venue',Venue);
 routes.get('/venue/:venue_id',Venue_id);   // Basic Info
 routes.get('/venue/b/:venue_id',Venueb_id); //Win percentage

@@ -48,4 +48,9 @@ const pointsTable = async(year) => {
     return  todo.rows;
 }
 
-module.exports={pointsTable};
+const syears = async() => {
+    const query =`select distinct season_year from match`;
+    const todo = await pool.query(query,[]);
+    return todo.rows;
+}
+module.exports={pointsTable,syears};

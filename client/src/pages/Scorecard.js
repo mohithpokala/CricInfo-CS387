@@ -241,7 +241,7 @@ const Scorecard = (props) => {
       }
       </table>
       </div>
-      <Slideshow img={batim} fade={true} width={"24%"} ml={"38%"} mt={"52%"} ht={"20%"} />
+      <Slideshow img={batim} fade={true} width={"20%"} ml={"40%"} mt={"52%"} ht={"12%"} />
       <div style={{display:"block",width:"50%",position:"absolute",left:"50%"}}>
             <h5 style={{textAlign:"center"}}>
                 Second Innings : {matchdet[0].team1!=matchdet[0].toss_winner ? matchdet[0].team1name : matchdet[0].team2name}
@@ -275,7 +275,7 @@ const Scorecard = (props) => {
             <table>
             <tr>
               <td >Bowler</td>
-              <td>Bowled</td>
+              <td>Balls Bowled</td>
               <td>Runs Given</td>
               <td>Wickets</td></tr>
               {
@@ -294,13 +294,13 @@ const Scorecard = (props) => {
       <tr><td><b>Total </b></td><td>&nbsp;</td><td>&nbsp;</td><td>{misc[0].total1}/{misc[0].wkts1} </td></tr>
       </table>
       </div>
-      <Slideshow img={bowlim} fade={true} width="24%" ml="38%" mt="110%" ht={"20%"} />
+      <Slideshow img={bowlim} fade={true}width={"20%"} ml={"40%"} mt={"112%"} ht={"10%"} />
       <div style={{display:"block",top:"118%",width:"50%",position:"absolute",left:"50%"}}>
 
             <table>
             <tr>
               <td>Bowler</td>
-              <td>Bowled</td>
+              <td>Balls Bowled</td>
               <td>Runs Given</td>
               <td>Wickets</td></tr>
               {

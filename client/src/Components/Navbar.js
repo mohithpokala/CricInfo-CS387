@@ -6,6 +6,7 @@ const Navbar = (props) => {
   const func = (i)=>{
     setX(i);
   }
+  console.log(props);
   const renderButtons = (card, index) => {
     return (
       <li ><a href={card.link}>{card.text}</a></li>

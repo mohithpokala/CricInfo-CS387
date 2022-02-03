@@ -1,4 +1,4 @@
-const {points_table} = require("../Services/D.services");
+const {points_table,syear} = require("../Services/D.services");
 
 const pointstable = async (req,res) => {
     const year = req.params.year;
@@ -6,4 +6,10 @@ const pointstable = async (req,res) => {
     return res.status(200).json(data);
 }
 
-module.exports = {pointstable}
+const sy = async (req,res) => {
+    const data = await syear();
+    return res.status(200).json(data);
+}
+
+
+module.exports = {pointstable,sy}
