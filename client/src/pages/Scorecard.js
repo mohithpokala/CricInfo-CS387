@@ -237,7 +237,7 @@ const Scorecard = (props) => {
               {
                 innings1bat.map( 
                   x => { return <tr>
-                  <td><Link href={"/players/"+x.player_id} style={{color:"black",textDecoration:"none"}}> {x.batter}</Link></td>
+                  <td ><Link href={"/players/"+x.player_id} style={{color:"black",textDecoration:"none"}}> {x.batter}</Link></td>
                   <td>{x.runs}</td>
                   <td>{x.fours}</td>
                   <td>{x.sixes}</td>
