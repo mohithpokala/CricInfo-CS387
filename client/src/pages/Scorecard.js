@@ -196,7 +196,7 @@ const Scorecard = (props) => {
         <div style={{width:"100%",height:"90%",top:"40%",position:"absolute",textAlign:"center"}}>
       <b>{matchdet? "Match":''}</b><b>:</b>{matchdet?match_id+" ,  "+matchdet[0].team1name + " vs "+ matchdet[0].team2name + " ,"+ matchdet[0].season_year:''}
       <br/>
-      <b>{matchdet? "Toss":''}</b><b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name='runs')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
+      <b>{matchdet? "Toss":''}</b><b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name='bat')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
       <br/>
       <b>{matchdet? "Venue":''}</b><b>:</b> {matchdet?matchdet[0].venue_name+" , "+matchdet[0].city_name:''} 
       <br/>
@@ -241,7 +241,7 @@ const Scorecard = (props) => {
       }
       </table>
       </div>
-      <Slideshow img={batim} fade={true} width={"24%"} ml={"38%"} mt={"52%"} ht={"40vh"} />
+      <Slideshow img={batim} fade={true} width={"24%"} ml={"38%"} mt={"52%"} ht={"20%"} />
       <div style={{display:"block",width:"50%",position:"absolute",left:"50%"}}>
             <h5 style={{textAlign:"center"}}>
                 Second Innings : {matchdet[0].team1!=matchdet[0].toss_winner ? matchdet[0].team1name : matchdet[0].team2name}
@@ -270,7 +270,7 @@ const Scorecard = (props) => {
       </div>
       <br></br>
 
-      <div style={{display:"block",top:"118%",width:"50%",position:"absolute",height:"80%"}}>
+      <div style={{display:"block",top:"118%",width:"50%",position:"absolute"}}>
 
             <table>
             <tr>
@@ -294,7 +294,7 @@ const Scorecard = (props) => {
       <tr><td><b>Total </b></td><td>&nbsp;</td><td>&nbsp;</td><td>{misc[0].total1}/{misc[0].wkts1} </td></tr>
       </table>
       </div>
-      <Slideshow img={bowlim} fade={true} width="24%" ml="38%" mt="110%" ht="40vh" />
+      <Slideshow img={bowlim} fade={true} width="24%" ml="38%" mt="110%" ht={"20%"} />
       <div style={{display:"block",top:"118%",width:"50%",position:"absolute",left:"50%"}}>
 
             <table>

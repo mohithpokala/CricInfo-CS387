@@ -11,10 +11,8 @@ table {
   }
   tr{
       width: 100%;
-      height: 1vh;
+      height: 1%;
       left:0%;
-      margin-bottom: 2px;    
-
   }
   
   tr:nth-child(even){background-color: #f2f2f2}
