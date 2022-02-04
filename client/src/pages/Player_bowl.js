@@ -15,12 +15,23 @@ const Player_bowl = () => {
     const [runs,setRuns]=useState(false);
     const [wickets,setWickets]=useState(false);
     const [done,setDone]=useState(false);
+    const [player, setPlayer]=useState([false]);
   
 
 
 
         useEffect(() => {
           setTimeout(() => {
+
+            fetch(
+              "http://localhost:5000/players/"+player_id+"/4")
+                          .then((res) => res.json())
+                          .then((json) => {
+                             setPlayer(json);
+                             console.log(json);
+                          });
+
+
               fetch(
                   "http://localhost:5000/players/"+player_id+"/2")
                               .then((res) => res.json())
@@ -53,7 +64,7 @@ const Player_bowl = () => {
     return (
         
         <>
-      {!(done && playerbowl && match && runs && wickets) ? (
+      {!(done && playerbowl && match && runs && wickets && player) ? (
         <div
         style={{
             position: 'absolute', left: '50%', top: '50%',
@@ -67,9 +78,83 @@ const Player_bowl = () => {
           width={100}
         /></div>
       ) : (
+
+
+        (parseInt(playerbowl[0].num_matches,10)!=0)?(
+
         <React.Fragment>
+
+<div style={{width:"30%",height:"90%",top:"15%",position:"absolute",textAlign:"center",left:"0"}}>
       
-    
+      
+      <table style={{width:"100%",position:"absolute"}}>
+        <tr><td style={{width:"50%",textAlign:"left"}}><h3>{player[0].player_name}</h3></td>
+        <td style={{width:"50%",textAlign:"right"}}><h3>Bowling Career</h3></td>
+        </tr>
+        <tr><td style={{width:"50%",colspan:"1",textAlign:"left"}}><b>Innings Bowled</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_matches}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Runs Given</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].runs_given}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Number of wickets</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_wkts}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Overs bowled</b> </td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].overs}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>balls bowled</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].balls}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Economy</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].economy}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Number of Fifers</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].five_wkts}</td></tr>
+
+      </table>
+      </div>
+
+      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"10%",backgroundColor:"white",float:"center",left:"45%"}}>
+      <Chart 
+          data={{
+            labels : match,
+            datasets: [
+              {
+                type :"bar",
+                label: "Runs",
+                data: runs,
+                borderWidth: 1,
+                // pointRadius:0.5,
+                borderColor:'rgba(153, 102, 255, 0.2)',
+                backgroundColor:'rgba(153, 102, 255, 0.2)',
+              },
+              
+              {
+                type :"line",
+                label: "Wickets",
+                data: wickets,
+                borderWidth: 1,
+                // pointRadius:0.5,
+                borderColor:'rgba(0, 0, 255, 1)'
+              }
+            ],
+            options:{ maintainAspectRatio: false }
+          }} height="10px" width="20px" position="relative" options={{plugins: {
+            title: {
+                display: true,
+                text: 'Runs scored Vs  Match ID',
+                color:'red',
+                font:'bold 15px'
+            },
+            scales: [
+                {
+                  title: { 
+                    
+                              display:true,
+                              text: 'Runs Scored',
+                              color:'red',
+                              font:'bold 15px'
+                            }
+                }
+
+
+            ]
+        } }}></Chart>
+        </div>
+
+
+
+
+      
+{/*     
     <div style={{width:"100%",height:"90%",top:"90%",position:"absolute",textAlign:"center"}}>
     <h3>Bowling Career</h3>
       <b>{ "Number of Innings Bowled"}</b><b>:</b>{playerbowl[0].num_matches}
@@ -134,11 +219,16 @@ const Player_bowl = () => {
 
             ]
         } }}></Chart>
-        </div>
+        </div> */}
 
 
 
     </React.Fragment>
+
+    
+
+):(
+  <h2>Not Everyone is an allrounder</h2>)
       )}
     </>
 
