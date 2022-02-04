@@ -27,7 +27,7 @@ const Player_info=()=>{
         <div style={{width:"100%",height:"90%",top:"40%",position:"absolute",textAlign:"center"}}>
     <h1>{player[0]?player[0].player_name+","+player[0].country_name:""}</h1>
         <h2>{player[0]?player[0].batting_hand+"sman":""}</h2>
-        <h2>{player[0]?player[0].bowling_skill+" bowler":""}</h2>
+        <h2>{player[0]?(player[0].bowling_skill=="N/A")?(""):player[0].bowling_skill+" bowler":""}</h2>
         </div>
      
     </React.Fragment>
