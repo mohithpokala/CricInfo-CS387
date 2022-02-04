@@ -69,6 +69,7 @@ const Player_bat = () => {
     return (
         <>
       {!(done && playerbat && match && runs && colors && player) ? (
+
         <div
         style={{
             position: 'absolute', left: '50%', top: '50%',
@@ -82,78 +83,108 @@ const Player_bat = () => {
           width={100}
         /></div>
       ) : (
-        <React.Fragment>
+        
+        (parseInt(playerbat[0].number_of_matches_played,10)!=0)?(
+
+          <React.Fragment>
     
-    <div style={{width:"30%",height:"90%",top:"15%",position:"absolute",textAlign:"center",left:"0"}}>
-
-
-      <table style={{width:"100%",position:"absolute"}}>
-        <tr><td style={{width:"50%",textAlign:"left"}}><h3>{player[0].player_name}</h3></td>
-        <td style={{width:"50%",textAlign:"right"}}><h3>Batting Career</h3></td>
-        </tr>
-        <tr><td style={{width:"50%",colspan:"1",textAlign:"left"}}><b>Innings Played</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].number_of_matches_played}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Runs</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].total_runs}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Fours</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].four}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Sixes</b> </td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].six}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Fifties</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].num_fifty}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Highest Score</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].hs}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Strike Rate</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].strike_rate}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Average</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].average}</td></tr>
-
-      </table>
-      </div>
-
-      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"10%",backgroundColor:"white",float:"center",left:"45%"}}>
-      <Chart 
-          data={{
-            labels : match,
-            datasets: [
-              {
-                type :"bar",
-                label: "Runs",
-                data: runs,
-                borderWidth: 1,
-                // pointRadius:0.5,
-                borderColor:colors,
-                backgroundColor:colors,
-              },
-              
-              {
-                type :"line",
-                label: "Runs",
-                data: runs,
-                borderWidth: 1,
-                // pointRadius:0.5,
-                borderColor:'rgba(0, 0, 255, 1)'
-              }
-            ],
-            options:{ maintainAspectRatio: false }
-          }} height="10px" width="20px" position="relative" options={{plugins: {
-            title: {
-                display: true,
-                text: 'Runs scored Vs  Match ID',
-                color:'red',
-                font:'bold 15px'
-            },
-            scales: [
-                {
-                  title: { 
+          <div style={{width:"30%",height:"90%",top:"15%",position:"absolute",textAlign:"center",left:"0"}}>
+      
+      
+            <table style={{width:"100%",position:"absolute"}}>
+              <tr><td style={{width:"50%",textAlign:"left"}}><h3>{player[0].player_name}</h3></td>
+              <td style={{width:"50%",textAlign:"right"}}><h3>Batting Career</h3></td>
+              </tr>
+              <tr><td style={{width:"50%",colspan:"1",textAlign:"left"}}><b>Innings Played</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].number_of_matches_played}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Runs</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].total_runs}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Fours</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].four}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Sixes</b> </td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].six}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Fifties</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].num_fifty}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Highest Score</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].hs}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Strike Rate</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].strike_rate}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Average</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].average}</td></tr>
+      
+            </table>
+            </div>
+      
+            <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"10%",backgroundColor:"white",float:"center",left:"45%"}}>
+            <Chart 
+                data={{
+                  labels : match,
+                  datasets: [
+                    {
+                      type :"bar",
+                      label: ">=50",
+                      data: runs,
+                      borderWidth: 1,
+                      // pointRadius:0.5,
+                      borderColor:colors,
+                      backgroundColor:colors,
+                    },
                     
-                              display:true,
-                              text: 'Runs Scored',
-                              color:'red',
-                              font:'bold 15px'
-                            }
-                }
+                    {
+                      type :"line",
+                      label: ">=30 and <50",
+                      data: [],
+                      borderWidth: 1,
+                      // pointRadius:0.5,
+                      backgroundColor:'rgba(153, 102, 255, 1)',
+                      borderColor:'rgba(153, 102, 255, 1)'
+                    },
+                    
+                    {
+                      type :"line",
+                      label: ">=20 and <30",
+                      data: [],
+                      borderWidth: 1,
+                      // pointRadius:0.5,
+                      backgroundColor:'rgba(0,0,255,1)',
+                      borderColor:'rgba(0,0,255,1)'
+                    },
+                    
+                    {
+                      type :"line",
+                      label: "<20",
+                      data: [],
+                      borderWidth: 1,
+                      // pointRadius:0.5,
+                      backgroundColor:'rgba(255, 0, 0, 1)',
+                      borderColor:'rgba(255, 0, 0, 1)'
+                    }
+                  ],
+                  options:{ maintainAspectRatio: false }
+                }} height="10px" width="20px" position="relative" options={{plugins: {
+                  title: {
+                      display: true,
+                      text: 'Runs scored Vs  Match ID',
+                      color:'red',
+                      font:'bold 15px'
+                  },
+                  scales: [
+                      {
+                        title: { 
+                          
+                                    display:true,
+                                    text: 'Runs Scored',
+                                    color:'red',
+                                    font:'bold 15px'
+                                  }
+                      }
+      
+      
+                  ]
+              } }}></Chart>
+              </div>
+      
+      
+      
+          </React.Fragment>
 
 
-            ]
-        } }}></Chart>
-        </div>
 
-
-
-    </React.Fragment>
+        ):(
+        <h2>Not Everyone is an allrounder</h2>)
+    
       )}
     </>
     );
