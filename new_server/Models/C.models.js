@@ -15,6 +15,8 @@ const player_bat = async(player_id) => {
 
     const query =
         `
+        SELECT number_of_matches_played,FOUR,SIX,total_runs,NUM_FIFTY,HS,sum(CASE WHEN b=0 then 0 else ROUND(1.0*a/b*100,2) end) as strike_rate,
+        sum(case when d=0 then c else ROUND(1.0*c/d) end) as average from (
         with F(SCORE_MATCH) as 
         (select sum(runs_scored) as SCORE_MATCH from ball_by_ball where striker = $1 group by match_id)
         select 
@@ -25,7 +27,7 @@ const player_bat = async(player_id) => {
         coalesce((select sum(CASE WHEN SCORE_MATCH>=50 AND SCORE_MATCH<100  THEN 1 ELSE 0 END) from F),0) as NUM_FIFTY,
         coalesce((select max(SCORE_MATCH) from F),0) as HS,
         1.0*sum(CASE when  striker = $1 THEN runs_scored ELSE 0 END) as a,(sum( case when striker = $1 THEN 1 else 0 end)) as b,
-        sum(CASE when  striker = $1 THEN runs_scored ELSE 0 END) as c,(select coalesce((sum( case when striker = $1 and out_type is not null THEN 1 else 0 end)),1) from ball_by_ball ) as d 
+        sum(CASE when  striker = $1 THEN runs_scored ELSE 0 END) as c,(select sum( case when striker = $1 and out_type is not null THEN 1 else 0 end) from ball_by_ball ) as d 
         from 
         ball_by_ball
 ) as ifgfjji group by number_of_matches_played,FOUR,SIX,total_runs,NUM_FIFTY,HS

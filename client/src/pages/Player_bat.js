@@ -5,7 +5,7 @@ import { Chart } from 'react-chartjs-2';
 
 import { chartColors } from "./colors";
 import ReactLoading from "react-loading";
-
+import '../CSS/Match.css'
 const Player_bat = () => {
 
     const player_id=useParams().player_id;
@@ -15,7 +15,24 @@ const Player_bat = () => {
     const [match,setMatch]=useState(false);
     const [runs,setRuns]=useState(false);
     const [colors,setColors]=useState(false);
+    const [player, setPlayer]=useState([false]);
+  
 
+    useEffect(()=>{
+        getPlayerinfo();},[]);
+    
+    
+        function getPlayerinfo()
+        {
+    
+          fetch(
+            "http://localhost:5000/players/"+player_id+"/4")
+                        .then((res) => res.json())
+                        .then((json) => {
+                           setPlayer(json);
+                           console.log(json);
+                        });
+        }
 
     useEffect(() => {
         setTimeout(() => {
@@ -35,10 +52,10 @@ const Player_bat = () => {
                     for(var i=0;i<json.length;i++){
                         m.push(json[i]['match_id']);
                         r.push(json[i]['score_match'])
-                        if(parseInt(r[i],10)<20) c.push('rgba(255, 0, 0, 0.2)');
-                        else if(parseInt(r[i],10)<30) c.push('rgba(0,0,255,0.2)');
-                        else if(parseInt(r[i],10)<50) c.push('rgba(153, 102, 255, 0.2)');
-                        else if(parseInt(r[i],10)>=50) c.push('rgba(0,255,0,0.2)');
+                        if(parseInt(r[i],10)<20) c.push('rgba(255, 0, 0, 1)');
+                        else if(parseInt(r[i],10)<30) c.push('rgba(0,0,255,1)');
+                        else if(parseInt(r[i],10)<50) c.push('rgba(153, 102, 255, 1)');
+                        else if(parseInt(r[i],10)>=50) c.push('rgba(0,255,0,1)');
                       }
                  setMatch(m);
                  setRuns(r);
@@ -51,7 +68,7 @@ const Player_bat = () => {
 
     return (
         <>
-      {!(done && playerbat && match && runs && colors) ? (
+      {!(done && playerbat && match && runs && colors && player) ? (
         <div
         style={{
             position: 'absolute', left: '50%', top: '50%',
@@ -66,29 +83,27 @@ const Player_bat = () => {
         /></div>
       ) : (
         <React.Fragment>
-      
     
-    <div style={{width:"100%",height:"90%",top:"90%",position:"absolute",textAlign:"center"}}>
+    <div style={{width:"30%",height:"90%",top:"15%",position:"absolute",textAlign:"center",left:"0"}}>
 
-    <h3>Batting Career</h3>
-    {
-      <b>{ "Innings Played"}</b><b>:</b>{playerbat[0].number_of_matches_played}
-      <br/>
-      <b>{"Runs"}</b><b>:</b>{playerbat[0].total_runs}
-      <br/>
-      <b>{"Fours"}</b><b>:</b>{playerbat[0].four}
-      <br/>
-      <b>{"Sixes"}</b><b>:</b>{playerbat[0].six}
-      <br/>
-      <b>{"Fifties"}</b><b>:</b>{playerbat[0].num_fifty}
-      <br/>
-      <b>{"Highest Score"}</b><b>:</b>{playerbat[0].hs}
-      <br/>
-      <b>{"Average"}</b><b>:</b>{playerbat[0].average}
-      <br/>
+
+      <table style={{width:"100%",position:"absolute"}}>
+        <tr><td style={{width:"50%",textAlign:"left"}}><h3>{player[0].player_name}</h3></td>
+        <td style={{width:"50%",textAlign:"right"}}><h3>Batting Career</h3></td>
+        </tr>
+        <tr><td style={{width:"50%",colspan:"1",textAlign:"left"}}><b>Innings Played</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].number_of_matches_played}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Runs</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].total_runs}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Fours</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].four}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Sixes</b> </td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].six}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Fifties</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].num_fifty}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Highest Score</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].hs}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Strike Rate</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].strike_rate}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Average</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].average}</td></tr>
+
+      </table>
       </div>
 
-      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"10%",backgroundColor:"white",float:"center",left:"25%"}}>
+      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"10%",backgroundColor:"white",float:"center",left:"45%"}}>
       <Chart 
           data={{
             labels : match,

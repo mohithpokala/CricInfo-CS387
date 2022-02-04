@@ -19,7 +19,7 @@ const Player = () => {
 
 
   const player_id=useParams().player_id;
-  const [x,setX]= useState(2);
+  const [x,setX]= useState(0);
   const f0=()=>{
       setX(0);
   }
