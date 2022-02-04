@@ -14,12 +14,12 @@ const Pointstable = () => {
   const year=useParams().year;
   const [table, setTable]=useState([false]);
     
-  const [y,setY]=useState([false]);
+  const [y,setY]=useState();
   useEffect(() => {
     setTimeout(() => {
       
     let data = [];
-
+      if(!y){
       fetch("http://localhost:5000/season_years/")
       .then((res) => res.json())
       .then(
@@ -27,19 +27,19 @@ const Pointstable = () => {
           for(var i=0;i<json.length;i++){ 
             data.push(json[i]["season_year"]);
           } 
-          setY(json.length);
+          setY(json[0]["season_year"])
         } 
       );
-      setyrs(data);
+      setyrs(data);}
     }, 2000);
   }, []);   
   const renderButtons = (card) => {
     console.log(card);
     return (
-      <li style={{float:"right"}}><a href={"./"+card}>{card}</a></li>
+      <li onclick={()=>{setY(card)}} style={{float:"right",backgroundColor:(year==card)?"green":"#333"}}><a href={"./"+card}>{card}</a></li>
     );
   }; 
-  console.log(yrs);
+  console.log(y);
   function range(start, end) {
     return Array(end - start + 1).fill().map((_, idx) => start + idx)
   }

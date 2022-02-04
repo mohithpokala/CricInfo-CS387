@@ -96,7 +96,7 @@ export default function Home() {
 
   return (
     <div style={{backgroundColor:"grey",width:"100%",height:"100%",position:"absolute"}}>
-      <Slideshow img={hdim} fade={true} width={"80%"} ml={"10%"} mt={"0%"} ht={"90vh"} />
+      <Slideshow img={hdim} fade={true} width={"64%"} ml={"18%"} mt={"0%"} ht={"90vh"} />
     </div>
   );
 }

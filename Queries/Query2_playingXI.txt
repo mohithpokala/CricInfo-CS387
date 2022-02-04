@@ -1,1 +1,0 @@
-select player_name from player_match,player where player_match.player_id=player.player_id  and match_id=$1 and team_id=$2

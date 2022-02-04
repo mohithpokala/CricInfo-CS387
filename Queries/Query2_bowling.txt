@@ -1,9 +1,0 @@
-select 
-player_name as Bowler,
-count(player_id) as Bowls_Bowled,
-sum(runs_scored) as runs_given,
-count(out_type) as wickets
-from ball_by_ball,player,match
-where
-bowler=player_id and match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2
-group by player_name

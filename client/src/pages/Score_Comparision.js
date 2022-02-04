@@ -345,36 +345,7 @@ let chartInstance = null;
 </p>
 
 
-<div style={styles.relative}>
-
-
-        <div style={styles.pieContainer}>
-          <h1>{matchdet[0].team1name}</h1>
-          <Pie
-            data={pie1}
-            options={options}
-            ref={input => {
-              chartInstance = input;
-            }}
-          />
-          
-        </div>
-
-        <div style={styles.pieContainer2}>
-          <h1>{matchdet[0].team2name}</h1>
-          <Pie
-            data={pie2}
-            options={options}
-            ref={input => {
-              chartInstance = input;
-            }}
-          />
-          
-        </div>
-
-        <div id="legend" />
-      </div>
-        </div>
+</div>
         </React.Fragment>
       )}
     </div>

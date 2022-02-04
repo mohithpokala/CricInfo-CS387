@@ -1,9 +1,0 @@
-select 
-X.team_name,Y.team_name,venue_name,city_name,Z.team_name,win_margin,win_type
-from match,team as X,team as Y,venue,team as Z
-where
-match.team1=X.team_id and
-match.team2=Y.team_id and
-venue.venue_id=match.venue_id and
-match.match_winner=Z.team_id
-order by season_year

@@ -18,6 +18,53 @@ import dd from '../Assets/dd.png'
 import dc from '../Assets/dc.png'
 import rr from '../Assets/rr.png'
 import rps from '../Assets/rpsg.png'
+import { Doughnut, Pie } from "react-chartjs-2";
+import { chartColors } from "./colors";
+import im3 from '../Assets/im3.jpg'
+import { textAlign } from '@mui/system';
+
+
+
+const options = {
+  legend: {
+    display: false,
+    position: "right"
+  },
+  elements: {
+    arc: {
+      borderWidth: 0
+    }
+  }
+};
+
+const pieOptions = {
+  legend: {
+    display: true,
+    position: "right",
+    legendCallback: function(chart) {
+      // Return the HTML string here.
+      console.log(chart);
+      return [
+        <ul>
+          <li>z</li>
+          <li>zzzz</li>
+          <li>ppp</li>
+          <li>adasda</li>
+        </ul>
+      ];
+    }
+  },
+  elements: {
+    arc: {
+      borderWidth: 0
+    }
+  }
+};
+
+
+
+
+
 const Summary = (props) => {
   const L=[
     kkr,kkr,rcb,csk,kxip,rr,dd,mi,dc,ktk,pwi,srh,rps,gl
@@ -29,11 +76,85 @@ const Summary = (props) => {
     const [tb2, settb2]=useState(false);
     const [ta1, setta1]=useState(false);
     const [ta2, setta2]=useState(false);
+    const [done2, setdone2] = useState(false);
+    const [done3, setdone3] = useState(false);
     
     const match_id = props.match_id;
     function range(start, end) {
         return Array(end - start + 1).fill().map((_, idx) => start + idx)
     }
+
+    const [pie1,setPie1]=useState([]);
+    const [pie2,setPie2]=useState([]);
+
+    const data = {
+      maintainAspectRatio: false,
+      responsive: false,
+      labels: ["a", "b", "c", "d"],
+      datasets: [
+        {
+          data: [300, 50, 100, 50],
+          backgroundColor: chartColors,
+          hoverBackgroundColor: chartColors
+        }
+      ]
+    };
+    
+    
+
+    useEffect(() => {
+      setTimeout(() => {
+          fetch("http://localhost:5000/piechart/"+match_id+"/1")
+              .then((res) => res.json())
+              .then((json) => {
+              setPie1(
+                {
+                  maintainAspectRatio: false,
+                  responsive: false,
+                  labels: ["Extra Runs", "Sixes", "Fours", "Threes","Twos","Ones"],
+                  datasets: [
+                    {
+                      data: [json[0].extra_runs,json[0].sixes,json[0].fours,json[0].threes,json[0].twos,json[0].ones],
+                      backgroundColor: chartColors,
+                      hoverBackgroundColor: chartColors
+                    }
+                  ]
+                }
+
+                );
+                setdone2(true);
+              });
+      }, 2000);
+  }, []);
+
+
+  
+  useEffect(() => {
+    setTimeout(() => {
+        fetch("http://localhost:5000/piechart/"+match_id+"/2")
+            .then((res) => res.json())
+            .then((json) => {
+            setPie2(
+              {
+                maintainAspectRatio: false,
+                responsive: false,
+                labels: ["Extra Runs", "Sixes", "Fours", "Threes","Twos","Ones"],
+                datasets: [
+                  {
+                    data: [json[0].extra_runs,json[0].sixes,json[0].fours,json[0].threes,json[0].twos,json[0].ones],
+                    backgroundColor: chartColors,
+                    hoverBackgroundColor: chartColors
+                  }
+                ]
+              }
+
+              );
+              setdone3(true);
+            });
+    }, 2000);
+}, []);
+
+
     useEffect(() => {
         setTimeout(() => {
             fetch("http://localhost:5000/scorecard/"+match_id+"/2/3")
@@ -98,6 +219,7 @@ const Summary = (props) => {
         }, 2000);
     }, []);
     const [color,setColor]=useState(["purple","crimson","yellow","firebrick","indigo","blue","dodgerBlue","grey","lightSalmon","black","orange","violet","orangeRed"]);
+    let chartInstance = null;
 
     if(matchdet)
     console.log(matchdet[0]);
@@ -119,7 +241,7 @@ const Summary = (props) => {
         /></div>
       ) : (
         <React.Fragment>
-          <div style={{display:"block",width:"60%",left:"20%",position:"absolute",top:"20vh",backgroundColor:"white",height:"50vh"}}>
+          <div style={{display:"block",width:"40%",left:"30%",position:"absolute",top:"20vh",backgroundColor:"white",height:"50vh"}}>
             <table style={{display:"absolute",width:"100%",left:"0%",top:"0"}}>
             <tr style={{color:"white",height:"2vh",width:"100%",textAlign:"left",top:"0"}}>
               <td style={{color:"white",height:"2vh",width:"100%",textAlign:"left"}}> <h4>MATCH SUMMARY</h4></td>
@@ -148,8 +270,8 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"50%",top:"14vh",borderBottom:"none",borderLeft:"none",borderTop:"none"}}> 
-                <tr style={{height:"5.3vh"}}>
+      <table style={{display:"absolute",width:"50%",left:"50%",top:"14vh",borderLeft:"none",borderTop:"none"}}> 
+                <tr style={{height:"4.9vh"}}>
                 <td style={{width:"0%"}}></td>
               <td style={{color:"black",width:"40%",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
             </tr>
@@ -160,9 +282,9 @@ const Summary = (props) => {
                     x => { return(
                       (tb1[x])?(
                       <tr>
-                    <td style={{width:"80%",textAlign:"left"}}><Link href={"/players/"+tb1[x].player_id} style={{color:"black",textDecoration:"none"}}> {tb1[x].player_name}</Link></td>
+                    <td style={{width:"60%",textAlign:"left"}}><Link href={"/players/"+tb1[x].player_id} style={{color:"black",textDecoration:"none"}}> {tb1[x].player_name}</Link></td>
                   <td style={{width:"15%",textAlign:"right"}}>{tb1[x].wkts_taken}-{tb1[x].runs_given} &nbsp; &nbsp; {tb1[x].balls_bowled}</td>
-                    </tr>):(<tr><td style={{width:"80%",textAlign:"left"}}> &nbsp;</td>
+                    </tr>):(<tr><td style={{width:"60%",textAlign:"left"}}> &nbsp;</td>
                   <td style={{width:"15%",textAlign:"right"}}>&nbsp;</td></tr>));
                   }
                   )
@@ -170,7 +292,7 @@ const Summary = (props) => {
         
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"0%",top:"32.9vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
+      <table style={{display:"absolute",width:"50%",left:"0%",top:"32.9vh",borderRight:"none",textAlign:"left"}}> 
             <tr >
               <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings2_team} <img src={L[matchdet[0].b2]} style={{height:"4vh",width:"4vh"}}/></td>
               <td style={{color:"black",width:"40%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='field'?'TOSS':''}</td>
@@ -183,7 +305,7 @@ const Summary = (props) => {
                     <td style={{width:"80%",textAlign:"left"}}><Link href={"/players/"+ta2[x].player_id} style={{color:"black",textDecoration:"none" }}> {ta2[x].player_name}</Link></td>
                     <td style={{textAlign:"left"}}>{ta2[x].runs_scored} &nbsp; {ta2[x].balls_faced}</td>
                     </tr>):(<tr>
-                        <td style={{width:"80%",textAlign:"left"}}>&nbsp;</td>
+                        <td style={{width:"60%",textAlign:"left"}}>&nbsp;</td>
                     <td style={{textAlign:"left"}}> &nbsp; </td>
 
                     </tr>));
@@ -192,8 +314,8 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"50%",top:"32.9vh",borderTop:"none",borderLeft:"none"}}> 
-                <tr style={{height:"5.3vh"}}>
+      <table style={{display:"absolute",width:"50%",left:"50%",top:"32.9vh",borderLeft:"none"}}> 
+                <tr style={{height:"4.9vh"}}>
                 <td style={{width:"0%"}}></td>
               <td style={{color:"black",width:"40%",height:"1vh",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
             </tr>
@@ -202,10 +324,10 @@ const Summary = (props) => {
                     x => { return(
                       (tb2[x])?(
                       <tr>
-                    <td style={{width:"80%",textAlign:"left"}}><Link href={"/players/"+tb2[x].player_id} style={{color:"black",textDecoration:"none"}}> {tb2[x].player_name}</Link></td>
+                    <td style={{width:"60%",textAlign:"left"}}><Link href={"/players/"+tb2[x].player_id} style={{color:"black",textDecoration:"none"}}> {tb2[x].player_name}</Link></td>
                   <td style={{width:"15%",textAlign:"right"}}>{tb2[x].wkts_taken}-{tb2[x].runs_given} &nbsp; &nbsp; {tb2[x].balls_bowled}</td>
-                    </tr>):(<tr>   <td style={{width:"80%",textAlign:"left"}}> &nbsp;</td>
-                  <td style={{width:"15%",textAlign:"right"}}>&nbsp;</td>
+                    </tr>):(<tr>   <td style={{width:"60%",textAlign:"left"}}> &nbsp;</td>
+                  <td style={{textAlign:"left"}}>&nbsp;</td>
         </tr>));
                   }
                   )
@@ -214,16 +336,69 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"100%",left:"00%",top:"51.3vh",borderTop:"none"}}> 
+      <table style={{display:"absolute",width:"100%",left:"00%",top:"51vh"}}> 
       <tr><td>
       {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
       </td></tr></table>
       </div>
-    </React.Fragment>
-      )}
-    </div>
+    <div style={styles.relative}>
 
-  );
+
+<div style={styles.pieContainer}>
+  <h4>{matchdet[0].team1name}</h4>
+  <Pie
+    data={pie1}
+    options={options}
+    ref={input => {
+      chartInstance = input;
+    }}
+  />
+  
+</div>
+
+<div style={styles.pieContainer2}>
+  <h4>{matchdet[0].team2name}</h4>
+  <Pie
+    data={pie2}
+    options={options}
+    ref={input => {
+      chartInstance = input;
+    }}
+  />
+  
+</div>
+
+<div id="legend" />
+</div>
+</React.Fragment>
+)}
+</div>
+);
 }
+const styles = {
+pieContainer: {
+  width: "20%",
+  height: "50%",
+  top: "30vh",
+  left: "15%",
+  position: "absolute",
+  transform: "translate(-50%, -50%)",
+  textAlign:"center"
+},
+pieContainer2: {
+  width: "20%",
+  height: "50%",
+  top: "30vh",
+  left: "85%",
+  position: "absolute",
+  transform: "translate(-50%, -50%)",
+  textAlign:"center"
+},
+
+
+relative: {
+  position: "relative"
+}
+};
 
 export default Summary;

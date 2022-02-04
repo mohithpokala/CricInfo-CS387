@@ -19,9 +19,9 @@ const Match=()=>{
     }
     return (
     <div className="home_page">
-      <div className='navbar' style={{width:"40%",position:"absolute",height:"20",top:"0",left:"50%",paddingLeft:"none"}}>
+      <div className='navbar' style={{width:"30%",position:"absolute",height:"20",top:"0",left:"70%",paddingLeft:"none"}}>
         <ul>
-            <li onClick={f0} style={{width:"10%",float:"left",green:"#333",color:"white"}}><a >Scorecard</a></li>
+            <li onClick={f0} style={{width:"10%",float:"left",backgroundColor:x==0?"green":"#333",color:"white"}}><a >Scorecard</a></li>
             <li onClick={f1} style={{width:"10%",float:"left",backgroundColor:x==1?"green":"#333",color:"white"}}><a >Comparision</a></li>
             <li onClick={f2} style={{width:"10%",float:"left",backgroundColor:x==2?"green":"#333",color:"white"}}><a >Summary</a></li>
         </ul>

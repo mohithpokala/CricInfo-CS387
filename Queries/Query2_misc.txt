@@ -1,8 +1,0 @@
-select toss_winner,toss_name,venue_name,city_name,season_year,X.team_name,Y.team_name
-from match,venue,team as X,team as Y
-where 
-venue.venue_id=match.venue_id and
-X.team_id=team1 and
-Y.team_id=team2 and match_id=$1 
-and 
-($2=$2)
