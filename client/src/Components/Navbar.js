@@ -9,7 +9,7 @@ const Navbar = (props) => {
   console.log(props);
   const renderButtons = (card, index) => {
     return (
-      <li ><a href={card.link}>{card.text}</a></li>
+      <li style={{float:"left"}}><a href={card.link}>{card.text}</a></li>
     );
   }; 
   return (

@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
 
 import Navbar from '../Components/Navbar';
+import ReactLoading from "react-loading";
 
 import download from '../Assets/download.jpg'
 import '../CSS/rotateimage.css'
+import PTable from './P_table';
 
 const Pointstable = () => {
 
@@ -12,31 +14,44 @@ const Pointstable = () => {
   const year=useParams().year;
   const [table, setTable]=useState([false]);
     
-
+  const [y,setY]=useState([false]);
   useEffect(() => {
-    let data=[]
     setTimeout(() => {
+      
+    let data = [];
+
       fetch("http://localhost:5000/season_years/")
       .then((res) => res.json())
       .then(
         (json) => {
           for(var i=0;i<json.length;i++){ 
-            data.push({"link":"./"+json[i]["season_year"],"text":"season_year"});
+            data.push(json[i]["season_year"]);
           } 
+          setY(json.length);
         } 
       );
+      setyrs(data);
     }, 2000);
-    setyrs(data);
   }, []);   
+  const renderButtons = (card) => {
+    console.log(card);
+    return (
+      <li style={{float:"right"}}><a href={"./"+card}>{card}</a></li>
+    );
+  }; 
   console.log(yrs);
-  
+  function range(start, end) {
+    return Array(end - start + 1).fill().map((_, idx) => start + idx)
+  }
   return (<>
    {!(yrs) ? (
-        <img className ="animate" src={download} style ={{left:"30%",top:"30%",position:"absolute",width:"40%",height:"40%"}}/>
+        <></>
       ) : (
         <React.Fragment>
-    <div style={{position:"absolute",width:"100%",height:"90%",top:"30%"}}>
-      <Navbar links={yrs} width="100%" height="40%" top="10%" /> gdfgdv
+    <div style={{position:"absolute",width:"100%",height:"90%"}}>
+     <ul style={{top:"0%",width:"40%",paddingLeft:"none",right:"0%"}}>{yrs.map(renderButtons)}
+  </ul>      <PTable year={year} style={{top:"10%",height:"100%",position:"absolute",width:"80%",left:"0%",backgroundColor:"green"}}/>
+
     </div></React.Fragment>)}</>
   );
   

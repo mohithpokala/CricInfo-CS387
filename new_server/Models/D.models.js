@@ -40,7 +40,7 @@ const pointsTable = async(year) => {
         and
         G.s=F.s and F.s=H.s and J.s=H.s 
         and G.s=$1
-        order by G.s asc
+        order by points desc, NRR desc
         
 
         `;

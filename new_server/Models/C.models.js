@@ -18,17 +18,17 @@ const player_bat = async(player_id) => {
         with F(SCORE_MATCH) as 
         (select sum(runs_scored) as SCORE_MATCH from ball_by_ball where striker = $1 group by match_id)
         select 
-        (select count(distinct match_id) from ball_by_ball where striker=$1 or non_striker=$1) as number_of_matches_played,
-        sum(CASE when runs_scored=4 THEN 1 ELSE 0 END) as FOUR,
-        sum(CASE when runs_scored=6 THEN 1 ELSE 0 END) as SIX,
-        sum(runs_scored) as total_runs,
-        (select sum(CASE WHEN SCORE_MATCH>=50 THEN 1 ELSE 0 END) as NUM_FIFTY from F),
-        (select max(SCORE_MATCH) from F) as HS,
-        ROUND(1.0*sum(runs_scored)/count(striker)*100,2) as Strike_rate,
-        ROUND(sum(runs_scored)/(select coalesce(count(out_type),1) from ball_by_ball where striker=$1),2) as average
+        (select count(distinct match_id) from ball_by_ball where striker = $1 or non_striker = $1) as number_of_matches_played,
+        sum(CASE when runs_scored=4 and striker = $1 THEN 1 ELSE 0 END) as FOUR,
+        sum(CASE when runs_scored=6 and striker = $1 THEN 1 ELSE 0 END) as SIX,
+        sum(CASE when  striker = $1 THEN runs_scored ELSE 0 END) as total_runs,
+        coalesce((select sum(CASE WHEN SCORE_MATCH>=50 AND SCORE_MATCH<100  THEN 1 ELSE 0 END) from F),0) as NUM_FIFTY,
+        coalesce((select max(SCORE_MATCH) from F),0) as HS,
+        1.0*sum(CASE when  striker = $1 THEN runs_scored ELSE 0 END) as a,(sum( case when striker = $1 THEN 1 else 0 end)) as b,
+        sum(CASE when  striker = $1 THEN runs_scored ELSE 0 END) as c,(select coalesce((sum( case when striker = $1 and out_type is not null THEN 1 else 0 end)),1) from ball_by_ball ) as d 
         from 
         ball_by_ball
-        where striker = $1
+) as ifgfjji group by number_of_matches_played,FOUR,SIX,total_runs,NUM_FIFTY,HS
         `;
     const todo = await pool.query(query,[player_id]);
     return  todo.rows;

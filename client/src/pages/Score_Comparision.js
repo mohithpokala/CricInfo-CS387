@@ -233,7 +233,7 @@ const Score_comp = (props) => {
             });            
     }, 2000);
 }, []);
-
+console.log(y1,y3);
 function range(start, end) {
   return Array(end - start + 1).fill().map((_, idx) => start + idx)
 }

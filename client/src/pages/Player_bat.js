@@ -69,7 +69,9 @@ const Player_bat = () => {
       
     
     <div style={{width:"100%",height:"90%",top:"90%",position:"absolute",textAlign:"center"}}>
+
     <h3>Batting Career</h3>
+    {
       <b>{ "Innings Played"}</b><b>:</b>{playerbat[0].number_of_matches_played}
       <br/>
       <b>{"Runs"}</b><b>:</b>{playerbat[0].total_runs}
