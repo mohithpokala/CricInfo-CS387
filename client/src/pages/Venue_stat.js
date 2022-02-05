@@ -98,9 +98,9 @@ const Venue_stat = (props) => {
                     labels: ["Matches won where team had chosen batting first", "Matches won where team had chosen bowling first"],
                     datasets: [
                       {
-                        data: [json[0].bat,json[0].ball],
-                        backgroundColor: chartColors,
-                        hoverBackgroundColor: chartColors
+                        data: [json[0].batwin,json[0].bowlwin],
+                        backgroundColor: ["rgba(255,0,0,1)","rgba(0,255,0,1)"],
+                        hoverBackgroundColor: ["rgba(255,0,0,0.7)","rgba(0,255,0,0.7)"],hoverOffset:8
                       }
                     ]
                   }
@@ -219,9 +219,23 @@ let chartInstance = null;
 
 <div style={styles.pieContainer}>
   <h2>{"Outline"}</h2>
-  <Pie
+  <Doughnut
     data={pie}
-    options={options}
+    options={{tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+            const dataset = data.datasets[tooltipItem.datasetIndex];
+            const meta = dataset._meta[Object.keys(dataset._meta)[0]];
+            const total = meta.total;
+            const currentValue = tooltipItem?.value;
+            const percentage = parseFloat((currentValue/total*100).toFixed(1));
+            return currentValue + ' (' + percentage + '%)';
+        },
+        title: tooltipItem =>
+            `${tooltipItem[0]?.label}`
+    }
+    
+  }}}
     ref={input => {
       chartInstance = input;
     }}

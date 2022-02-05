@@ -186,7 +186,7 @@ const Scorecard = (props) => {
   return (
     <>
       {!(innings1bat && misc && innings1bowl && innings2bat && innings2bowl && umpire && matchdet && team1 && team2) ? (
-        <img className ="animate" src={download} style ={{left:"30%",top:"30%",position:"absolute",width:"40%",height:"40%"}}/>
+        <img className ="animate" src={download} style ={{left:"35%",top:"35%",position:"absolute",width:"30%",height:"40%"}}/>
       ) : (
         <React.Fragment>
       <h2 style={{textAlign:"center"}}>Match Info</h2>

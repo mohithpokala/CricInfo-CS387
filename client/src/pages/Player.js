@@ -31,11 +31,11 @@ const Player = () => {
   }
   return (
   <div className="home_page">
-    <div className='navbar' style={{width:"30%",height:"8%",top:"0%",left:"45%"}}>
+    <div className='navbar' style={{width:"30%",height:"8%",top:"0%",left:"80%"}}>
       <ul>
-          <li onClick={f0} style={{backgroundColor:x==0?"green":"#333",color:"white"}}><a >Information</a></li>
-          <li onClick={f1} style={{backgroundColor:x==1?"green":"#333",color:"white"}}><a >Batting</a></li>
-          <li onClick={f2} style={{backgroundColor:x==2?"green":"#333",color:"white"}}><a >Bowling</a></li>
+          <li onClick={f0} style={{cursor:"pointer",backgroundColor:x==0?"green":"#333",color:"white"}}><a >Information</a></li>
+          <li onClick={f1} style={{cursor:"pointer",backgroundColor:x==1?"green":"#333",color:"white"}}><a >Batting</a></li>
+          <li onClick={f2} style={{cursor:"pointer",backgroundColor:x==2?"green":"#333",color:"white"}}><a >Bowling</a></li>
       </ul>
     </div>
       {

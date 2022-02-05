@@ -18,10 +18,8 @@ import dd from '../Assets/dd.png'
 import dc from '../Assets/dc.png'
 import rr from '../Assets/rr.png'
 import rps from '../Assets/rpsg.png'
-import { Doughnut, Pie } from "react-chartjs-2";
+import {  Pie } from "react-chartjs-2";
 import { chartColors } from "./colors";
-import im3 from '../Assets/im3.jpg'
-import { textAlign } from '@mui/system';
 
 
 
@@ -36,31 +34,6 @@ const options = {
     }
   }
 };
-
-const pieOptions = {
-  legend: {
-    display: true,
-    position: "right",
-    legendCallback: function(chart) {
-      // Return the HTML string here.
-      console.log(chart);
-      return [
-        <ul>
-          <li>z</li>
-          <li>zzzz</li>
-          <li>ppp</li>
-          <li>adasda</li>
-        </ul>
-      ];
-    }
-  },
-  elements: {
-    arc: {
-      borderWidth: 0
-    }
-  }
-};
-
 
 
 
@@ -317,7 +290,7 @@ const Summary = (props) => {
       <table style={{display:"absolute",width:"50%",left:"50%",top:"32.9vh",borderLeft:"none"}}> 
                 <tr style={{height:"4.9vh"}}>
                 <td style={{width:"0%"}}></td>
-              <td style={{color:"black",width:"40%",height:"1vh",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
+              <td style={{color:"black",width:"40%",height:"1vh",textAlign:"right"}}> {misc[0].total2}/{misc[0].wkts2}</td>
             </tr>
               {
                 range(0,2).map( 

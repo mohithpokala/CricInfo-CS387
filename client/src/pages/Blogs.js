@@ -13,7 +13,8 @@ import Card_comp from '../Components/Card'
     useEffect(()=>{
     getMatches(page*rowsPerPage,rowsPerPage);},[]);
   
-    
+    const [color,setColor]=useState(["purple","crimson","yellow","firebrick","indigo","blue","dodgerBlue","grey","lightSalmon","black","orange","violet","orangeRed"]);
+
   
     function getMatches(){
       fetch("http://localhost:5000/matches/")
@@ -29,6 +30,7 @@ import Card_comp from '../Components/Card'
         <Card_comp 
             data={data}
             index={index}
+            color = {color[parseInt(data.match_winner)-1]}
         />
       );
     });

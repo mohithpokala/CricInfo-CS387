@@ -6,7 +6,6 @@ import Link from '@mui/material/Link';
 
 const Venues =()=>{
     const [venues,setVenues] = useState(false);
-    const venue_id=useParams().venue_id;
 
     
     useEffect(() => {
@@ -19,6 +18,8 @@ const Venues =()=>{
                             });
         }, 2000);
     }, []);
+
+    console.log(venues);
 
     return (<>
         {!(venues) ? (
@@ -37,7 +38,8 @@ const Venues =()=>{
            ) : (
              <React.Fragment>
          <div style={{position:"absolute",width:"100%",top:"5%",left:"0%",height:"100%",textAlign:"left"}}>
-             <table style={{width:"70%",position:"absolute",left:"15%"}}>
+            <button type="button" class="btn btn-success" onClick={()=>{window.location="/add_venue"}} style={{position:"absolute",width:"10%",left:"45%"}}>Add Venue</button>
+             <table style={{width:"70%",position:"absolute",left:"15%",top:"10%"}}>
              <tr>
                  <td style={{textAlign:"left"}}><b>Venue</b></td>
                  <td style={{textAlign:"center"}}><b>City</b></td>
@@ -48,14 +50,16 @@ const Venues =()=>{
                {venues.map((row) => (
                  <tr key={row.venue_id}>
                  <td  style={{textAlign:"left"}}><b><Link href={"/venue/"+row.venue_id} style={{color:"black",textDecoration:"none"}}>{row.venue_name}</Link></b></td>
-                   <td  style={{textAlign:"center"}}>{row.city_name}</td>
+                   <td  style={{textAlign:"center"}}><a href={"https://en.wikipedia.org/wiki/"+row.city_name} style={{textDecoration:"none",color:"black"}}>{row.city_name}</a></td>
                    <td  style={{textAlign:"center"}}>{row.country_name}</td>
                    <td  style={{textAlign:"center"}}>{row.capacity}</td>
-                   <td  style={{textAlign:"center"}}>{row.matches}</td>
+                   <td  style={{textAlign:"center"}}>{row.count}</td>
                  </tr>
                ))}
              </table>
-         </div></React.Fragment>)}</>
+             <br></br>
+           
+         </div> </React.Fragment>)}</>
        );
 
 };

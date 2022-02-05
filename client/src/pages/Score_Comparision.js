@@ -155,29 +155,32 @@ const Score_comp = (props) => {
         const q=matchdet?matchdet[0].team2name:'dummy';
         let runs1 = [0];
         let runs2 = [0];
-        let wkts1 = [{x:0,y:0}];
-        let wkts2 = [{x:0,y:0}];
+        let wkts1 = [];
+        let wkts2 = [];
+        let r1=0;let r2=0;
         fetch("http://localhost:5000/scorecomparision/"+match_id+"/2")
             .then((res) => res.json())
             .then((json) => {
                 for(var i=0;i<json.length;i++){
-                    runs1.push(json[i]['r1']);
+                    r1=r1+parseInt(json[i]['r1']);
+                    runs1.push(r1);
                     if(json[i]['w1']==1)
-                      wkts1.push({x:i+1,y:json[i]['r1']});
-                    else if(json[i]['r1']>1){
+                      wkts1.push({x:i+1,y:r1});
+                    else if(json[i]['w1']>1){
                       for(var j=0;j<json[i]['w1'];j++){
-                        var k=Math.random();console.log(k,k*0.1,json[i]['r1'],"rnadf");
-                        wkts1.push({x:i+1,y:(parseInt(json[i]['r1'])+parseFloat((j-json[i]['w1']/2)*(json[i]['w1'])))});
+                        var k=Math.random();
+                        wkts1.push({x:i+1,y:(r1+parseFloat((j-json[i]['w1']/2)*(json[i]['w1'])))});
                       }
                     }
 
-                    runs2.push(json[i]['r2']);
+                    r2=r2+parseInt(json[i]['r2']);
+                    runs2.push(r2);
                     if(json[i]['w2']==1)
-                      wkts2.push({x:i+1,y:json[i]['r2']});
-                    else if(json[i]['r2']>1){
+                      wkts2.push({x:i+1,y:r2});
+                    else if(json[i]['w2']>1){
                       for(var j=0;j<json[i]['w2'];j++){
                         var k=Math.random();console.log(k,k*0.1,json[i]['r2'],"rnadf");
-                        wkts2.push({x:i+1,y:(parseInt(json[i]['r2'])+parseFloat((j-json[i]['w2']/2)*(json[i]['w2'])))});
+                        wkts2.push({x:i+1,y:(r2+parseFloat((j-json[i]['w2']/2)*(json[i]['w2'])))});
                       }
                     }
                   }
@@ -262,8 +265,11 @@ let chartInstance = null;
         <React.Fragment>
           <br></br><br></br><br></br>
 
-      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"20%",backgroundColor:"white",float:"center",left:"25%"}}>
+      <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"15%",backgroundColor:"white",float:"center",left:"25%"}}>
       <h4 style={{display:"block",top:"20%",textAlign:"center",width:"100%"}}>Score Comparision</h4>
+      <div style={{width:"20%",left:"20%",border:"2px solid rgba(255, 0, 0, 1)",backgroundColor:"rgba(255, 0, 0, 0.5)",position:"absolute"}}> {matchdet[0].team1name}</div>
+            <div style={{width:"20%",left:"60%",border:"2px solid rgba(0, 0, 255, 1)",backgroundColor:"rgba(0, 0, 255, 0.5)",position:"absolute"}}>{matchdet[0].team2name}</div>
+<br></br><br></br>
 
           <Chart 
           data={{
@@ -279,13 +285,13 @@ let chartInstance = null;
               },
               {
                 type :"scatter",
-                label: "Fall of wickets for "+matchdet[0].innings1_team,
                 data: y3,
                 borderWidth: 2,
                 pointRadius:4,
-                backgroundColor: 'rgba(0, 0, 0, 1)',
+                backgroundColor: 'rgba(255, 255, 255, 1)',
+                fill:"true",
                 color:"red",
-                borderColor:'rgba(0, 0, 0, 1)'
+                borderColor:'rgba(255, 0, 0, 1)'
 
               },
               {
@@ -299,49 +305,18 @@ let chartInstance = null;
               },
               {
                 type :"scatter",
-                label: "Fall of wickets for "+matchdet[0].innings2_team,
                 data: y4,
                 borderWidth: 2,
                 pointRadius:4,
                 borderColor:'rgba(255,0,255, 1)',
-                backgroundColor: 'rgba(255,0,255, 1)'
+                backgroundColor: 'rgba(255,255,255, 1)'
               }
             ],
             options:{ maintainAspectRatio: false }
-          }} height="10px" width="20px" position="relative" options={{plugins: {
-            title: {
-                display: true,
-                text: 'Runs scored Vs Over id',
-                color:'red',
-                font:'bold 15px'
-            },
-            scales: [
-                {
-                  title: { 
-                    
-                              display:true,
-                              text: 'Runs Scored',
-                              color:'red',
-                              font:'bold 15px'
-                            }
-                }
-
-
-            ]
-          //    {y: 
-          //       {
-          //         title: { 
-                    
-          //           display:true,
-          //           text: 'Runs Scored',
-          //           color:'red',
-          //           font:'bold 15px'
-          //         },
-          //         ticks: {
-          //           callback: function (value, index, values) {return value;}}}
-          // }
+          }} height="10px" width="20px" position="relative" options={{plugins: {legend:false
+            
         } }}></Chart>
-        <p>X-axis:Overs  Y-axis:Runs Scored <br></br>The dots indicate fall of wickets       <br></br>  <b><font color='white'>{matchdet[0].match_winner==matchdet[0].innings1_team?matchdet[0].innings1_team:matchdet[0].innings2_team} won by {matchdet[0].win_margin} {matchdet[0].win_type}</font> </b>
+        <p style={{textAlign:"center"}}><b>X-axis:</b>Overs <br></br> <b>Y-axis: </b>Runs Scored <br></br>The dots indicate fall of wickets       <br></br>  <b><font color='white'>{matchdet[0].match_winner==matchdet[0].innings1_team?matchdet[0].innings1_team:matchdet[0].innings2_team} won by {matchdet[0].win_margin} {matchdet[0].win_type}</font> </b>
 </p>
 
 
@@ -351,29 +326,7 @@ let chartInstance = null;
     </div>
   );
       }
-      const styles = {
-        pieContainer: {
-          width: "50%",
-          height: "50%",
-          top: "60%",
-          left: "20%",
-          position: "absolute",
-          transform: "translate(-50%, -50%)"
-        },
-        pieContainer2: {
-          width: "50%",
-          height: "50%",
-          top: "60%",
-          left: "80%",
-          position: "absolute",
-          transform: "translate(-50%, -50%)"
-        },
-
-
-        relative: {
-          position: "relative"
-        }
-      };
+    
       
 
 

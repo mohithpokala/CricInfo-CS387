@@ -80,7 +80,6 @@ const Player_bowl = () => {
       ) : (
 
 
-        (parseInt(playerbowl[0].num_matches,10)!=0)?(
 
         <React.Fragment>
 
@@ -88,21 +87,22 @@ const Player_bowl = () => {
       
       
       <table style={{width:"100%",position:"absolute"}}>
-        <tr><td style={{width:"50%",textAlign:"left"}}><h3>{player[0].player_name}</h3></td>
-        <td style={{width:"50%",textAlign:"right"}}><h3>Bowling Career</h3></td>
+      <tr><td style={{width:"90%",textAlign:"center"}}><h5>{player[0].player_name}</h5></td><td style={{width:"10%",textAlign:"left"}}>&nbsp;</td>
         </tr>
         <tr><td style={{width:"50%",colspan:"1",textAlign:"left"}}><b>Innings Bowled</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_matches}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Runs Given</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].runs_given}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Number of wickets</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_wkts}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Overs bowled</b> </td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].overs}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>balls bowled</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].balls}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Economy</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].economy}</td></tr>
-        <tr><td style={{width:"50%",textAlign:"left"}}><b>Number of Fifers</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].five_wkts}</td></tr>
+        <tr><td style={{width:"50%",colspan:"1",textAlign:"left"}}><b>Runs given</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_matches!=0?playerbowl[0].runs_given:0}</td></tr>
+
+    <tr><td style={{width:"50%",textAlign:"left"}}><b>Number of wickets</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_matches!=0?playerbowl[0].num_wkts:0}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Overs bowled</b> </td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_matches!=0?playerbowl[0].overs:0}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>balls bowled</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_matches!=0?playerbowl[0].balls:0}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Economy</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_matches!=0?playerbowl[0].economy:0}</td></tr>
+        <tr><td style={{width:"50%",textAlign:"left"}}><b>Number of Fifers</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbowl[0].num_matches!=0?playerbowl[0].five_wkts:0}</td></tr>
 
       </table>
       </div>
 
       <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"10%",backgroundColor:"white",float:"center",left:"45%"}}>
+      
       <Chart 
           data={{
             labels : match,
@@ -128,26 +128,11 @@ const Player_bowl = () => {
             ],
             options:{ maintainAspectRatio: false }
           }} height="10px" width="20px" position="relative" options={{plugins: {
-            title: {
-                display: true,
-                text: 'Runs scored Vs  Match ID',
-                color:'red',
-                font:'bold 15px'
-            },
-            scales: [
-                {
-                  title: { 
-                    
-                              display:true,
-                              text: 'Runs Scored',
-                              color:'red',
-                              font:'bold 15px'
-                            }
-                }
-
-
-            ]
+            
         } }}></Chart>
+        <br>
+        </br>
+        Match-id
         </div>
 
 
@@ -224,11 +209,6 @@ const Player_bowl = () => {
 
 
     </React.Fragment>
-
-    
-
-):(
-  <h2>Not Everyone is an allrounder</h2>)
       )}
     </>
 

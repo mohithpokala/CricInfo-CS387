@@ -10,8 +10,12 @@ import Venues from "./pages/Venues"
 import Venue  from "./pages/Venue"
 import Pointstable from "./pages/Pointstable"
 import Navbar from './Components/Navbar';
+import Player_filter from "./pages/Player_filter";
+import ADD_VENUE from "./pages/ADD_VENUE";
 
-
+import 'bootstrap/dist/css/bootstrap.css';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default function App() {
 
@@ -19,7 +23,8 @@ export default function App() {
     {text:"HOME",link:"/"},
     {text:"MATHCES",link:"/matches"},
     {text:"POINTS TABLE",link:"/pointstable/2011"},
-    {text:"VENUES",link:"/venues"}
+    {text:"VENUES",link:"/venues"},
+    {text:"PLAYERS",link:"/players"}
   ]
   return (
     <div className="home_page">
@@ -34,6 +39,8 @@ export default function App() {
             <Route path="/pointstable/:year" element={<Pointstable />}/>
             <Route path="/venues/" element={<Venues />}/>
             <Route path="/venue/:venue_id" element={<Venue />}/>
+            <Route path="/players/" element={<Player_filter />}/>
+            <Route path="/add_venue/" element={<ADD_VENUE />}/>
           </Routes>
         </BrowserRouter>
       </div>
