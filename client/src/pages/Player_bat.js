@@ -96,8 +96,8 @@ const Player_bat = () => {
               </tr>
               <tr><td style={{width:"50%",colspan:"1",textAlign:"left"}}><b>Innings Played</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].number_of_matches_played}</td></tr>
               <tr><td style={{width:"50%",textAlign:"left"}}><b>Runs</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].total_runs}</td></tr>
-              <tr><td style={{width:"50%",textAlign:"left"}}><b>Fours</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].four}</td></tr>
-              <tr><td style={{width:"50%",textAlign:"left"}}><b>Sixes</b> </td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].six}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Runs scored in Fours</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].four}</td></tr>
+              <tr><td style={{width:"50%",textAlign:"left"}}><b>Runs scored in Sixes</b> </td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].six}</td></tr>
               <tr><td style={{width:"50%",textAlign:"left"}}><b>Fifties</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].num_fifty}</td></tr>
               <tr><td style={{width:"50%",textAlign:"left"}}><b>Centuries</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].num_hundred}</td></tr>
               <tr><td style={{width:"50%",textAlign:"left"}}><b>Highest Score</b></td><td style={{width:"50%",textAlign:"right"}}>{playerbat[0].hs}</td></tr>

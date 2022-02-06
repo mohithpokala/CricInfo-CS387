@@ -225,7 +225,7 @@ const Scorecard = (props) => {
         <div style={{width:"100%",height:"100%",top:"40%",position:"absolute",textAlign:"center"}}>
       <b>{matchdet? "Match":''}</b><b>:</b>{matchdet?match_id+" ,  "+matchdet[0].team1name + " vs "+ matchdet[0].team2name + " ,"+ matchdet[0].season_year:''}
       <br/>
-      <b>{matchdet? "Toss":''}</b><b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name='bat')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
+      <b>{matchdet? "Toss":''}</b><b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name=='bat')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
       <br/>
       <b>{matchdet? "Venue":''}</b><b>:</b> {matchdet?matchdet[0].venue_name+" , "+matchdet[0].city_name:''} 
       <br/>

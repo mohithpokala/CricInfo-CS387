@@ -74,31 +74,31 @@ const pieChart = async(match_id,innings_number) => {
             q2 as(
             select match_id, innings_no,
             sum(runs_scored) as sixes from q0
-            where runs_scored = '6'
+            where runs_scored = 6
             group by match_id, innings_no
             ),
             q3 as(
             select match_id, innings_no,
             sum(runs_scored) as fours from q0
-            where runs_scored = '4'
+            where runs_scored = 4
             group by match_id, innings_no
             ),
             q4 as(
             select match_id, innings_no,
-            sum(runs_scored),0 as threes from q0
-            where runs_scored = '3'
+            sum(runs_scored) as threes from q0
+            where runs_scored = 3
             group by match_id, innings_no
             ),
             q5 as(
             select match_id, innings_no, 
-            COALESCE(sum(runs_scored),0) as twos from q0
-            where runs_scored = '2'
+            sum(runs_scored) as twos from q0
+            where runs_scored = 2
             group by match_id, innings_no
             ),
             q6 as(
             select match_id, innings_no, sum(runs_scored) as ones
             from q0
-            where runs_scored = '1'
+            where runs_scored = 1
             group by match_id, innings_no
             ),q7 as
             (
