@@ -24,8 +24,7 @@ const Venue_Id = async(venue_id) => {
 select 
 venue_name,venue.venue_id,city_name,country_name,capacity,count(distinct match_id) as matches_played,
 min(case when  f2.m!=match.match_id then 1000000 else case when f1.r<f2.r then f1.r else f2.r end end) as min_scores
-,max(case when f2.m!=match.match_id then 0 else case when f1.r>f2.r and f2.m!=match.match_id then f1.r else f2.r end end) as max_scores,
-max(case when f2.m=match.match_id and ((toss_name='bat' and toss_winner!=match_winner) or (toss_name='field' and toss_winner=match_winner)) then f1.r else -1 end) as chase
+,max(case when f2.m!=match.match_id then 0 else case when f1.r>f2.r and f2.m!=match.match_id then f1.r else f2.r end end) as max_scores,max(case when f2.m=match.match_id and ((toss_name='bat' and toss_winner!=match_winner) or (toss_name='field' and toss_winner=match_winner)) then f1.r else -1 end) as chase
 from f1,f2,match   right outer join venue on
 match.venue_id =venue.venue_id where f1.m=f2.m and venue.venue_id=$1 group by venue_name,venue.venue_id,city_name,country_name,capacity
 
