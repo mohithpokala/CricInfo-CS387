@@ -246,7 +246,7 @@ const Scorecard = (props) => {
 
           <div style={{display:"block",width:"50%",position:"absolute"}}>
             <h5 style={{textAlign:"center"}}>
-                First Innings:{matchdet[0].team1==matchdet[0].toss_winner ? matchdet[0].team1name : matchdet[0].team2name}
+                First Innings:{ matchdet[0].innings1team}
             </h5>
             <table>
             <tr>
@@ -273,7 +273,7 @@ const Scorecard = (props) => {
       <Slideshow img={batim} fade={true} width={"20%"} ml={"40%"} mt={"52%"} ht={"12%"} />
       <div style={{display:"block",width:"50%",position:"absolute",left:"50%"}}>
             <h5 style={{textAlign:"center"}}>
-                Second Innings : {matchdet[0].team1!=matchdet[0].toss_winner ? matchdet[0].team1name : matchdet[0].team2name}
+                Second Innings : { matchdet[0].innings2team}
             </h5>
             <table>
             <tr>
