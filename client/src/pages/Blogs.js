@@ -8,11 +8,8 @@ import ReactLoading from "react-loading";
   const Blogs = () => {
 
     const [matches, setMatches] =useState([]);
-  
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(40);
     useEffect(()=>{
-    getMatches(page*rowsPerPage,rowsPerPage);},[]);
+    getMatches();},[]);
   
     const [color,setColor]=useState(["purple","crimson","yellow","firebrick","indigo","blue","dodgerBlue","grey","lightSalmon","black","orange","violet","orangeRed"]);
     const [team,setTeam] = useState("ALL");
