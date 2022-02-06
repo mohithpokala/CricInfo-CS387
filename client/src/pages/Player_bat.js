@@ -15,8 +15,8 @@ const Player_bat = () => {
     const [match,setMatch]=useState(false);
     const [runs,setRuns]=useState(false);
     const [colors,setColors]=useState(false);
-    const [player, setPlayer]=useState([false]);
-  
+    const [player, setPlayer]=useState(false);
+    const [wicket,setWickets]=useState(false);
 
 
 
@@ -44,22 +44,27 @@ const Player_bat = () => {
                             });
             let m = [];
             let r = [];
+            let w = [];
             let c=[];
             fetch("http://localhost:5000/players/"+player_id+"/0")
                 .then((res) => res.json())
                 .then((json) => {
                     for(var i=0;i<json.length;i++){
+                        
                         m.push(json[i]['match_id']);
                         r.push(json[i]['score_match'])
-                        if(parseInt(r[i],10)<20) c.push('rgba(255, 0, 0, 1)');
-                        else if(parseInt(r[i],10)<30) c.push('rgba(0,0,255,1)');
-                        else if(parseInt(r[i],10)<50) c.push('rgba(255,255,0,1)');
+                        if(json[i]['out']==0){
+                          w.push({x:json[i]['match_id'],y:parseInt(json[i]['score_match'])+2});
+                          
+                        }
+                        if(parseInt(r[i],10)<30) c.push('rgba(255, 0, 0, 1)');
+                        else if(parseInt(r[i],10)<50) c.push('rgba(0,0,255,1)');
                         else if(parseInt(r[i],10)>=50) c.push('rgba(0,255,0,1)');
                       }
                  setMatch(m);
                  setRuns(r);
                  setColors(c);
-                      
+                setWickets(w);
                   setDone(true);
                 });            
         }, 2000);
@@ -109,10 +114,9 @@ const Player_bat = () => {
       
             <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"10%",backgroundColor:"white",float:"center",left:"45%"}}>
             <h3>Runs scored Vs  Match ID</h3>
-            <div style={{width:"10%",left:"25%",border:"2px solid rgba(0, 255, 0, 1)",backgroundColor:"rgba(0, 255, 0, 0.3)",position:"absolute"}}>&gt;50</div>
-            <div style={{width:"10%",left:"38%",border:"2px solid rgba(255, 255, 0, 1)",backgroundColor:"rgba(255, 255, 0, 0.3)",position:"absolute"}}>30-50</div> 
-            <div style={{width:"10%",left:"51%",border:"2px solid rgba(0, 0, 255, 1)",backgroundColor:"rgba(0, 0, 255, 0.3)",position:"absolute"}}>20-30</div> 
-            <div style={{width:"10%",left:"64%",border:"2px solid rgba(255, 0, 0, 1)",backgroundColor:"rgba(255, 0, 0, 0.3)",position:"absolute"}}>&lt;20</div>
+            <div style={{width:"10%",left:"30%",border:"2px solid rgba(0, 255, 0, 1)",backgroundColor:"rgba(0, 255, 0, 0.3)",position:"absolute"}}>&gt;50</div>
+            <div style={{width:"10%",left:"45%",border:"2px solid rgba(0, 0, 255, 1)",backgroundColor:"rgba(0, 0, 255, 0.3)",position:"absolute"}}>30-50</div> 
+            <div style={{width:"10%",left:"60%",border:"2px solid rgba(255, 0, 0, 1)",backgroundColor:"rgba(255, 0, 0, 0.3)",position:"absolute"}}>&lt;30</div>
             <br></br><br></br>
             <Chart 
                 data={{
@@ -126,6 +130,17 @@ const Player_bat = () => {
                       // pointRadius:0.5,
                       borderColor:colors,
                       backgroundColor:colors,
+                    },
+                    {
+                      type :"scatter",
+                      data: wicket,
+                      borderWidth: 2,
+                      pointRadius:4,
+                      backgroundColor: 'rgba(0, 0, 0, 1)',
+                      fill:"true",
+                      color:"blue",
+                      pointStyle:"star",
+                      borderColor:'rgba(0, 0, 0, 1)'
                     }
                   ],
                   options:{ maintainAspectRatio: false }

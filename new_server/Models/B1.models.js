@@ -16,7 +16,7 @@ const mf= async(skip,limit)=>{
 	 team2=d.team_id
 	and team1=team.team_id
 	and e.team_id=b.match_winner
-	and b.venue_id=venue.venue_id
+	and b.venue_id=venue.venue_id order by season_year desc,match_id desc
     `;
     const todo = await pool.query(query);
     console.log(todo.rows);

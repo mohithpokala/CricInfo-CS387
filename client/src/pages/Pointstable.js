@@ -31,7 +31,7 @@ const Pointstable = () => {
         } 
       );
       setyrs(data);}
-    }, 2000);
+    }, 0);
   }, []);   
   const renderButtons = (card) => {
     console.log(card);

@@ -215,19 +215,23 @@ const Summary = (props) => {
       ) : (
         <React.Fragment>
           <div style={{display:"block",width:"40%",left:"30%",position:"absolute",top:"20vh",backgroundColor:"white",height:"50vh"}}>
-            <table style={{display:"absolute",width:"100%",left:"0%",top:"0"}}>
+
+          <img src={L[matchdet[0].team1]} style={{left:"38%",height:"20%",width:"9%",position:"fixed",top:"10%"}}/> <b style={{textAlign:"center",width:"100%",top:"17%",left:"0%",position:"fixed"}}> Vs </b>
+      <img src={L[matchdet[0].team2]} style={{left:"52%",height:"20%",width:"9%",position:"fixed",top:"10%"}}/>
+      <br></br>
+            <table style={{display:"absolute",width:"100%",left:"0%",top:"20%"}}>
             <tr style={{color:"white",height:"2vh",width:"100%",textAlign:"left",top:"0"}}>
-              <td style={{color:"white",height:"2vh",width:"100%",textAlign:"left"}}> <h4>MATCH SUMMARY</h4></td>
+              <td style={{color:"white",height:"2vh",width:"100%",textAlign:"left"}}> <h5>MATCH SUMMARY</h5></td>
             </tr>
-            <tr style={{color:"white",height:"2vh",width:"100%",textAlign:"left"}}>
+            <tr style={{color:"white",height:"2vh",width:"100%",textAlign:"left",backgroundColor:"#f2f2f2"}}>
               <td style={{color:"black",height:"1vh",textAlign:"left"}}> {match_id},IPL,{matchdet[0].season_year}</td>
             </tr>
             </table>
             <br></br>
-            <table style={{display:"absolute",width:"50%",left:"0%",top:"14vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
+            <table style={{display:"absolute",width:"50%",left:"0%",top:"22vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
             <tr >
-              <td style={{color:"black",width:"20%",height:"10vh",textAlign:"left"}}> {matchdet[0].innings1_team} <img src={L[matchdet[0].b1]} style={{height:"4vh",width:"4vh"}}/></td>
-              <td style={{color:"black",width:"80%",height:"10vh",textAlign:"left"}}> {matchdet[0].toss_name=='bat'?'TOSS':''}</td>
+              <td > {matchdet[0].innings1_team}</td>
+              <td > {matchdet[0].toss_name=='bat'?'TOSS':''}</td>
             </tr>
               {
                 range(0,2).map( 
@@ -243,10 +247,10 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"50%",top:"14vh",borderLeft:"none",borderTop:"none"}}> 
-                <tr style={{height:"4.9vh"}}>
-                <td style={{width:"0%"}}></td>
-              <td style={{color:"black",width:"40%",height:"10vh",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
+      <table style={{display:"absolute",width:"50%",left:"50%",top:"22vh",borderLeft:"none",borderTop:"none"}}> 
+                <tr >
+                <td style={{width:"10%"}}>{misc[0].overs1}</td>
+              <td style={{color:"black",width:"40%",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
             </tr>
             
               {
@@ -265,10 +269,10 @@ const Summary = (props) => {
         
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"0%",top:"40vh",borderRight:"none",textAlign:"left"}}> 
+      <table style={{display:"absolute",width:"50%",left:"0%",top:"39vh",borderRight:"none",textAlign:"left"}}> 
             <tr >
-              <td style={{color:"black",width:"20%",height:"10vh",textAlign:"left"}}> {matchdet[0].innings2_team} <img src={L[matchdet[0].b2]} style={{height:"4vh",width:"4vh"}}/></td>
-              <td style={{color:"black",width:"40%",height:"10vh",textAlign:"left"}}> {matchdet[0].toss_name=='field'?'TOSS':''}</td>
+              <td style={{color:"black",textAlign:"left"}}> {matchdet[0].innings2_team} </td>
+              <td style={{color:"black",textAlign:"left"}}> {matchdet[0].toss_name=='field'?'TOSS':''}</td>
             </tr>
               {
                 range(0,2).map( 
@@ -287,10 +291,10 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"50%",top:"40vh",borderLeft:"none"}}> 
-                <tr style={{height:"4.9vh"}}>
-                <td style={{width:"0%"}}></td>
-              <td style={{color:"black",width:"40%",height:"10vh",textAlign:"right"}}> {misc[0].total2}/{misc[0].wkts2}</td>
+      <table style={{display:"absolute",width:"50%",left:"50%",top:"39vh",borderLeft:"none"}}> 
+                <tr >
+                <td style={{width:"10%"}}>{misc[0].overs2}</td>
+              <td style={{color:"black",width:"40%",textAlign:"right"}}> {misc[0].total2}/{misc[0].wkts2}</td>
             </tr>
               {
                 range(0,2).map( 
@@ -309,7 +313,7 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"100%",left:"00%",top:"70vh"}}> 
+      <table style={{display:"absolute",width:"100%",left:"00%",top:"56vh"}}> 
       <tr><td>
       {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
       </td></tr></table>

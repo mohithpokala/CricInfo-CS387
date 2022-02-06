@@ -41,7 +41,7 @@ const player_score_bat = async(player_id) => {
 
     const query =
         `
-        select sum(runs_scored) as SCORE_MATCH,match_id from ball_by_ball where striker = $1 group by match_id order by match_id asc
+        select sum(runs_scored) as SCORE_MATCH,match_id,count(out_type) as out from ball_by_ball where striker = $1 group by match_id order by match_id asc
         `;
     const todo = await pool.query(query,[player_id]);
     return  todo.rows;

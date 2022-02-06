@@ -267,8 +267,8 @@ let chartInstance = null;
 
       <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"15%",backgroundColor:"white",float:"center",left:"25%"}}>
       <h4 style={{display:"block",top:"20%",textAlign:"center",width:"100%"}}>Score Comparision</h4>
-      <div style={{width:"20%",left:"20%",border:"2px solid rgba(255, 0, 0, 1)",backgroundColor:"rgba(255, 0, 0, 0.5)",position:"absolute"}}> {matchdet[0].innings1_team}</div>
-            <div style={{width:"20%",left:"60%",border:"2px solid rgba(0, 0, 255, 1)",backgroundColor:"rgba(0, 0, 255, 0.5)",position:"absolute"}}>{matchdet[0].innings2_team}</div>
+      <div style={{left:"20%",border:"2px solid rgba(255, 0, 0, 1)",backgroundColor:"rgba(255, 0, 0, 0.5)",position:"absolute"}}> {matchdet[0].innings1_team}</div>
+            <div style={{left:"60%",border:"2px solid rgba(0, 0, 255, 1)",backgroundColor:"rgba(0, 0, 255, 0.5)",position:"absolute"}}>{matchdet[0].innings2_team}</div>
 <br></br><br></br>
 
           <Chart 

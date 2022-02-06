@@ -223,13 +223,13 @@ const Scorecard = (props) => {
       <img src={L[matchdet[0].team2]} style={{left:"52%",height:"20%",width:"9%",position:"absolute"}}/>
 <br></br><br></br>
         <div style={{width:"100%",height:"100%",top:"40%",position:"absolute",textAlign:"center"}}>
-      <b>{matchdet? "Match":''}</b><b>:</b>{matchdet?match_id+" ,  "+matchdet[0].team1name + " vs "+ matchdet[0].team2name + " ,"+ matchdet[0].season_year:''}
+      <b>{matchdet? "Match":''}</b><b> : </b>{matchdet?match_id+" ,  "+matchdet[0].team1name + " vs "+ matchdet[0].team2name + " ,"+ matchdet[0].season_year:''}
       <br/>
-      <b>{matchdet? "Toss":''}</b><b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name=='bat')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
+      <b>{matchdet? "Toss":''}</b><b> : </b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name=='bat')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
       <br/>
-      <b>{matchdet? "Venue":''}</b><b>:</b> {matchdet?matchdet[0].venue_name+" , "+matchdet[0].city_name:''} 
+      <b>{matchdet? "Venue":''}</b><b> : </b> {matchdet?matchdet[0].venue_name+" , "+matchdet[0].city_name:''} 
       <br/>
-      <b>{matchdet? "Umpires":''}</b><b>:</b>
+      <b>{matchdet? "Umpires":''}</b><b> : </b>
       {umpire?umpire[0].umpire_name+" , "+umpire[1].umpire_name+" , "+umpire[2].umpire_name:''}<br/><br/>
       <b>
         Playing XI:
@@ -246,7 +246,7 @@ const Scorecard = (props) => {
 
           <div style={{display:"block",width:"50%",position:"absolute"}}>
             <h5 style={{textAlign:"center"}}>
-                First Innings:{ matchdet[0].innings1team}
+                First Innings : { matchdet[0].innings1_team}
             </h5>
             <table>
             <tr>
@@ -254,11 +254,11 @@ const Scorecard = (props) => {
               <td>Runs</td>
               <td>Fours</td>
               <td>Sixes</td>
-              <td>Balls Faced</td></tr>
+              <td>Balls</td></tr>
               {
                 innings1bat.map( 
                   x => { return <tr>
-                  <td ><Link href={"/players/"+x.player_id} style={{color:"black",textDecoration:"none"}}> {x.batter}</Link></td>
+                  <td style={{width:"40%",textAlign:"left"}}><Link href={"/players/"+x.player_id} style={{color:"black",textDecoration:"none"}}> {x.batter}</Link></td>
                   <td>{x.runs}</td>
                   <td>{x.fours}</td>
                   <td>{x.sixes}</td>
@@ -273,7 +273,7 @@ const Scorecard = (props) => {
       <Slideshow img={batim} fade={true} width={"20%"} ml={"40%"} mt={"52%"} ht={"12%"} />
       <div style={{display:"block",width:"50%",position:"absolute",left:"50%"}}>
             <h5 style={{textAlign:"center"}}>
-                Second Innings : { matchdet[0].innings2team}
+                Second Innings : { matchdet[0].innings2_team}
             </h5>
             <table>
             <tr>
@@ -281,11 +281,11 @@ const Scorecard = (props) => {
               <td>Runs</td>
               <td>Fours</td>
               <td>Sixes</td>
-              <td>Balls Faced</td></tr>
+              <td>Balls</td></tr>
               {
                 innings2bat.map( 
                   x => { return <tr>
-                  <td><Link href={"/players/"+x.player_id} style={{color:"black",textDecoration:"none"}}> {x.batter}</Link></td>
+                  <td style={{width:"40%",textAlign:"left"}}><Link href={"/players/"+x.player_id} style={{color:"black",textDecoration:"none"}}> {x.batter}</Link></td>
                   <td>{x.runs}</td>
                   <td>{x.fours}</td>
                   <td>{x.sixes}</td>
@@ -299,18 +299,18 @@ const Scorecard = (props) => {
       </div>
       <br></br>
 
-      <div style={{display:"block",top:"160%",width:"50%",position:"absolute"}}>
+      <div style={{display:"block",top:"120%",width:"50%",position:"absolute"}}>
 
             <table>
             <tr>
               <td >Bowler</td>
-              <td>Balls Bowled</td>
-              <td>Runs Given</td>
+              <td>Balls</td>
+              <td>Runs</td>
               <td>Wickets</td></tr>
               {
                 range(0,10).map( 
                   x => { return ((innings1bowl.length>x)?(<tr>
-                                      <td><Link href={"/players/"+innings1bowl[x].player_id} style={{color:"black",textDecoration:"none"}}> {innings1bowl[x].bowler}</Link></td>
+                                      <td style={{width:"40%",textAlign:"left"}}><Link href={"/players/"+innings1bowl[x].player_id} style={{color:"black",textDecoration:"none"}}> {innings1bowl[x].bowler}</Link></td>
                   <td>{innings1bowl[x].bowls_bowled}</td>
                   <td>{innings1bowl[x].runs_given}</td>
                   <td>{innings1bowl[x].wickets}</td></tr>):(<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>));
@@ -324,18 +324,18 @@ const Scorecard = (props) => {
       </table>
       </div>
       <Slideshow img={bowlim} fade={true}width={"20%"} ml={"40%"} mt={"112%"} ht={"10%"} />
-      <div style={{display:"block",top:"160%",width:"50%",position:"absolute",left:"50%"}}>
+      <div style={{display:"block",top:"120%",width:"50%",position:"absolute",left:"50%"}}>
 
             <table>
             <tr>
               <td>Bowler</td>
-              <td>Balls Bowled</td>
-              <td>Runs Given</td>
+              <td>Balls</td>
+              <td>Runs</td>
               <td>Wickets</td></tr>
               {
                 range(0,10).map( 
                   x => { return ((innings2bowl.length>x)?(<tr>
-                                      <td><Link href={"/players/"+innings2bowl[x].player_id} style={{color:"black",textDecoration:"none"}}> {innings2bowl[x].bowler}</Link></td>
+                                      <td style={{width:"40%",textAlign:"left"}}><Link href={"/players/"+innings2bowl[x].player_id} style={{color:"black",textDecoration:"none"}}> {innings2bowl[x].bowler}</Link></td>
                   <td>{innings2bowl[x].bowls_bowled}</td>
                   <td>{innings2bowl[x].runs_given}</td>
                   <td>{innings2bowl[x].wickets}</td></tr>):(<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>));

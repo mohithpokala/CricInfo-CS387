@@ -89,7 +89,9 @@ const summary = async(match_id)=>{
         sum(CASE when innings_no=1 THEN extra_runs+runs_scored else 0 END) as total1,
         sum(CASE when innings_no=2 THEN extra_runs+runs_scored else 0 END) as total2,
         sum(CASE WHEN innings_no=1 and out_type is not NULL THEN 1 else 0 END) as wkts1,
-        sum(CASE WHEN innings_no=2 and out_type is not NULL THEN 1 else 0 END) as wkts2
+        sum(CASE WHEN innings_no=2 and out_type is not NULL THEN 1 else 0 END) as wkts2,
+        max(CASE WHEN innings_no=1  THEN over_id else 0 END) as overs1,
+        max(CASE WHEN innings_no=2  THEN over_id else 0 END) as overs2
         from ball_by_ball
         where match_id = $1
         group by match_id

@@ -95,7 +95,7 @@ const Venue_stat = (props) => {
                   {
                     maintainAspectRatio: false,
                     responsive: false,
-                    labels: ["Matches won where team had chosen batting first", "Matches won where team had chosen bowling first"],
+                    labels: ["Team batting 1st won", "Team batting 2nd won"],
                     datasets: [
                       {
                         data: [json[0].batwin,json[0].bowlwin],

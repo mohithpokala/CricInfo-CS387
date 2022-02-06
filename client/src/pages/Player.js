@@ -1,23 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
 
-import Link from '@mui/material/Link';
-
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Player_info from './Player_info';
 import Player_bat from './Player_bat';
 import Player_bowl from './Player_bowl';
 
 
-import Typography from '@mui/material/Typography';
 
 const Player = () => {
 
-
+  
   const player_id=useParams().player_id;
   const [x,setX]= useState(0);
   const f0=()=>{
