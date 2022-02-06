@@ -267,8 +267,8 @@ let chartInstance = null;
 
       <div style={{position:"absolute",width:"50%",height:"75%",textAlign:"center",top:"15%",backgroundColor:"white",float:"center",left:"25%"}}>
       <h4 style={{display:"block",top:"20%",textAlign:"center",width:"100%"}}>Score Comparision</h4>
-      <div style={{width:"20%",left:"20%",border:"2px solid rgba(255, 0, 0, 1)",backgroundColor:"rgba(255, 0, 0, 0.5)",position:"absolute"}}> {matchdet[0].team1name}</div>
-            <div style={{width:"20%",left:"60%",border:"2px solid rgba(0, 0, 255, 1)",backgroundColor:"rgba(0, 0, 255, 0.5)",position:"absolute"}}>{matchdet[0].team2name}</div>
+      <div style={{width:"20%",left:"20%",border:"2px solid rgba(255, 0, 0, 1)",backgroundColor:"rgba(255, 0, 0, 0.5)",position:"absolute"}}> {matchdet[0].innings1_team}</div>
+            <div style={{width:"20%",left:"60%",border:"2px solid rgba(0, 0, 255, 1)",backgroundColor:"rgba(0, 0, 255, 0.5)",position:"absolute"}}>{matchdet[0].innings2_team}</div>
 <br></br><br></br>
 
           <Chart 
@@ -277,7 +277,7 @@ let chartInstance = null;
             datasets: [
               {
                 type :"line",
-                label: matchdet[0].team1name,
+                label: matchdet[0].innings1_team,
                 data: y1,
                 borderWidth: 2,
                 pointRadius:0.5,
@@ -296,7 +296,7 @@ let chartInstance = null;
               },
               {
                 type :"line",
-                label: matchdet[0].team2name,
+                label: matchdet[0].innings2_team,
                 data: y2,
                 borderWidth: 2,
                 pointRadius:0.5,
@@ -308,8 +308,10 @@ let chartInstance = null;
                 data: y4,
                 borderWidth: 2,
                 pointRadius:4,
-                borderColor:'rgba(255,0,255, 1)',
-                backgroundColor: 'rgba(255,255,255, 1)'
+                backgroundColor: 'rgba(255, 255, 255, 1)',
+                fill:"true",
+                color:"blue",
+                borderColor:'rgba(0, 0, 255, 1)'
               }
             ],
             options:{ maintainAspectRatio: false }

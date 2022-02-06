@@ -318,7 +318,7 @@ const Summary = (props) => {
 
 
 <div style={styles.pieContainer}>
-  <h4>{matchdet[0].team1name}</h4>
+  <h4>{matchdet[0].innings1_team}</h4>
   <Pie
     data={pie1}
     options={options}
@@ -330,7 +330,7 @@ const Summary = (props) => {
 </div>
 
 <div style={styles.pieContainer2}>
-  <h4>{matchdet[0].team2name}</h4>
+  <h4>{matchdet[0].innings2_team}</h4>
   <Pie
     data={pie2}
     options={options}

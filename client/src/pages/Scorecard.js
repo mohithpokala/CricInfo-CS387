@@ -11,13 +11,27 @@ import bat3 from '../Assets/bat3.png'
 import bat4 from '../Assets/bat4.png'
 import bat5 from '../Assets/bat5.jpg'
 import bat6 from '../Assets/bat6.png'
+import bat7 from '../Assets/bat7.png'
+import bat8 from '../Assets/bat8.png'
+import bat9 from '../Assets/bat9.png'
+import bat10 from '../Assets/bat10.png'
+import bat11 from '../Assets/bat11.png'
+import bat12 from '../Assets/bat12.png'
+import bat13 from '../Assets/bat13.png'
+import bat14 from '../Assets/bat14.png'
 import bowl1 from '../Assets/bowl1.png'
 import bowl2 from '../Assets/bowl2.png'
 import bowl3 from '../Assets/bowl3.png'
 import bowl4 from '../Assets/bowl4.png'
 import bowl5 from '../Assets/bowl5.png'
 import bowl6 from '../Assets/bowl6.png'
-import bowl7 from '../Assets/bowl6.png'
+import bowl7 from '../Assets/bowl7.png'
+import bowl8 from '../Assets/bowl8.png'
+import bowl9 from '../Assets/bowl9.png'
+import bowl10 from '../Assets/bowl10.png'
+import bowl11 from '../Assets/bowl11.png'
+import bowl12 from '../Assets/bowl12.png'
+import bowl13 from '../Assets/bowl13.png'
 import Slideshow  from '../Components/Slideshow';
 import srh from '../Assets/srh.png'
 import csk from '../Assets/csk.png'
@@ -33,6 +47,7 @@ import dc from '../Assets/dc.png'
 import rr from '../Assets/rr.png'
 import rps from '../Assets/rpsg.png'
 import download from '../Assets/download.jpg'
+import blank from '../Assets/blank.png'
 import '../CSS/rotateimage.css'
 
 const Scorecard = (props) => {
@@ -45,7 +60,15 @@ const Scorecard = (props) => {
     {im:bat3},
     {im:bat4},
     {im:bat5},
-    {im:bat6}
+    {im:bat6},
+    {im:bat7},
+    {im:bat8},
+    {im:bat9},
+    {im:bat10},
+    {im:bat11},
+    {im:bat12},
+    {im:bat13},
+    {im:bat14}
   ]
 
   const bowlim=[
@@ -55,7 +78,13 @@ const Scorecard = (props) => {
     {im:bowl4},
     {im:bowl5},
     {im:bowl6},
-    {im:bowl7}
+    {im:bowl7},
+    {im:bowl8},
+    {im:bowl9},
+    {im:bowl10},
+    {im:bowl11},
+    {im:bowl12},
+    {im:bowl13}
   ]
     const [innings1bat,setInnings1bat]=useState(false);
     const [innings1bowl,setInnings1bowl]=useState(false);

@@ -65,7 +65,7 @@ console.log(years,matches,teams);
         {
           matches.map(
           (data,index) => {
-            if((data.team1==team || team=='ALL') && (data.season_year==year || year=='ALL'))
+            if((data.team1==team || data.team2==team  || team=='ALL') && (data.season_year==year || year=='ALL'))
               return (
                 <Card_comp 
                   data={data}
