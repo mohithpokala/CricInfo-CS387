@@ -31,7 +31,7 @@ const Player = () => {
   }
   return (
   <div className="home_page">
-    <div className='navbar' style={{width:"30%",height:"8%",top:"0%",left:"80%"}}>
+    <div className='navbar' style={{width:"30%",height:"8%",top:"0%",left:"70%"}}>
       <ul>
           <li onClick={f0} style={{cursor:"pointer",backgroundColor:x==0?"green":"#333",color:"white"}}><a >Information</a></li>
           <li onClick={f1} style={{cursor:"pointer",backgroundColor:x==1?"green":"#333",color:"white"}}><a >Batting</a></li>
