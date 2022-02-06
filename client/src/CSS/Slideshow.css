@@ -72,3 +72,8 @@ display: block;
   font-size: 5vh;
   border-radius: 10px 10px 10px 10px;
 }
+
+
+.right.carousel-control, .left.carousel-control {
+  display: none;
+}

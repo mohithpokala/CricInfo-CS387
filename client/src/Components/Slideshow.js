@@ -12,7 +12,7 @@ const Slideshow = (props) => {
       };
       return (
         <div style={{ position:"absolute",width: props.width,top:props.mt,left:props.ml,height:props.ht,backgroundColor:"white"}}>
-          <Carousel  indicators={false} fade={props.fade}  >
+          <Carousel  indicators={false} fade={props.fade} arrows= {false} >
             {props.img.map(renderSlide)}  
           </Carousel>
         </div>

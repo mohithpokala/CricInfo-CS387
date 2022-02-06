@@ -223,17 +223,18 @@ let chartInstance = null;
     data={pie}
     options={{tooltips: {
       callbacks: {
-        label: (tooltipItem, data) => {
-            const dataset = data.datasets[tooltipItem.datasetIndex];
-            const meta = dataset._meta[Object.keys(dataset._meta)[0]];
-            const total = meta.total;
-            const currentValue = tooltipItem?.value;
-            const percentage = parseFloat((currentValue/total*100).toFixed(1));
-            return currentValue + ' (' + percentage + '%)';
+        label: function(tooltipItem, data) {
+          var dataset = data.datasets[tooltipItem.datasetIndex];
+          var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+          var total = meta.total;
+          var currentValue = dataset.data[tooltipItem.index];
+          var percentage = parseFloat((currentValue/total*100).toFixed(1));
+          return currentValue + ' (' + percentage + '%)';
         },
-        title: tooltipItem =>
-            `${tooltipItem[0]?.label}`
-    }
+        title: function(tooltipItem, data) {
+          return data.labels[tooltipItem[0].index];
+        }
+      }
     
   }}}
     ref={input => {

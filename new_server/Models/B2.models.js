@@ -10,7 +10,7 @@ const bats_stats = async(match_id,innings_number)=>{
     sum(CASE WHEN runs_scored=4 AND player.player_id=striker THEN 1 else 0 END) as fours,
     sum(CASE WHEN runs_scored=6 AND player.player_id=striker THEN 1 else 0 END) as sixes,
     sum(CASE WHEN player.player_id=striker THEN 1 else 0 END) as Balls_faced,
-    MIN(CASE WHEN player.player_id=striker THEN (10*over_id+ball_id) else 500 END) as least_ball
+    MIN(CASE WHEN player.player_id=striker or player.player_id=non_striker THEN (10*over_id+ball_id) else 500 END) as least_ball
     from ball_by_ball,player,match,player_match
     where
     match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2 and 
