@@ -222,7 +222,7 @@ const Scorecard = (props) => {
       <img src={L[matchdet[0].team1]} style={{left:"38%",height:"20%",width:"9%",position:"absolute"}}/> <b style={{textAlign:"center",width:"100%",top:"15%",position:"absolute"}}> Vs </b>
       <img src={L[matchdet[0].team2]} style={{left:"52%",height:"20%",width:"9%",position:"absolute"}}/>
 <br></br><br></br>
-        <div style={{width:"100%",height:"90%",top:"40%",position:"absolute",textAlign:"center"}}>
+        <div style={{width:"100%",height:"100%",top:"40%",position:"absolute",textAlign:"center"}}>
       <b>{matchdet? "Match":''}</b><b>:</b>{matchdet?match_id+" ,  "+matchdet[0].team1name + " vs "+ matchdet[0].team2name + " ,"+ matchdet[0].season_year:''}
       <br/>
       <b>{matchdet? "Toss":''}</b><b>:</b>{matchdet?(((matchdet[0].team1==matchdet[0].toss_winner) && (matchdet[0].toss_name='bat')) ? matchdet[0].team1name : matchdet[0].team2name) +" has won the toss and chose to "+matchdet[0].toss_name+" first":''} 
@@ -299,7 +299,7 @@ const Scorecard = (props) => {
       </div>
       <br></br>
 
-      <div style={{display:"block",top:"118%",width:"50%",position:"absolute"}}>
+      <div style={{display:"block",top:"160%",width:"50%",position:"absolute"}}>
 
             <table>
             <tr>
@@ -324,7 +324,7 @@ const Scorecard = (props) => {
       </table>
       </div>
       <Slideshow img={bowlim} fade={true}width={"20%"} ml={"40%"} mt={"112%"} ht={"10%"} />
-      <div style={{display:"block",top:"118%",width:"50%",position:"absolute",left:"50%"}}>
+      <div style={{display:"block",top:"160%",width:"50%",position:"absolute",left:"50%"}}>
 
             <table>
             <tr>
@@ -349,7 +349,7 @@ const Scorecard = (props) => {
       </table>
       </div>
 
-      <h3 style={{display:"block",top:"200%",width:"100%",position:"absolute",textAlign:"center"}}>          {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
+      <h3 style={{display:"block",top:"270%",width:"100%",position:"absolute",textAlign:"center"}}>          {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
 </h3></div>
     </React.Fragment>
       )}

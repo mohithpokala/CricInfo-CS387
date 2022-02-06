@@ -226,16 +226,16 @@ const Summary = (props) => {
             <br></br>
             <table style={{display:"absolute",width:"50%",left:"0%",top:"14vh",borderRight:"none",borderTop:"none",textAlign:"left"}}> 
             <tr >
-              <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings1_team} <img src={L[matchdet[0].b1]} style={{height:"4vh",width:"4vh"}}/></td>
-              <td style={{color:"black",width:"80%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='bat'?'TOSS':''}</td>
+              <td style={{color:"black",width:"20%",height:"10vh",textAlign:"left"}}> {matchdet[0].innings1_team} <img src={L[matchdet[0].b1]} style={{height:"4vh",width:"4vh"}}/></td>
+              <td style={{color:"black",width:"80%",height:"10vh",textAlign:"left"}}> {matchdet[0].toss_name=='bat'?'TOSS':''}</td>
             </tr>
               {
                 range(0,2).map( 
                   x => { return(
                     (ta1[x])?(
                     <tr>
-                  <td style={{width:"80%",textAlign:"left"}}><Link href={"/players/"+ta1[x].player_id} style={{color:"black",textDecoration:"none" }}> {ta1[x].player_name}</Link></td>
-                  <td style={{textAlign:"left"}}>{ta1[x].runs_scored} &nbsp; {ta1[x].balls_faced}</td>
+                  <td style={{width:"60%",textAlign:"left"}}><Link href={"/players/"+ta1[x].player_id} style={{color:"black",textDecoration:"none" }}> {ta1[x].player_name}</Link></td>
+                  <td style={{textAlign:"left"}}>{ta1[x].runs_scored} &nbsp; {"("+ta1[x].balls_faced+")"}</td>
                   </tr>):(<tr><td style={{width:"80%",textAlign:"left"}}>&nbsp;</td>
                     <td style={{textAlign:"left"}}> &nbsp; </td></tr>));
                 }
@@ -246,7 +246,7 @@ const Summary = (props) => {
       <table style={{display:"absolute",width:"50%",left:"50%",top:"14vh",borderLeft:"none",borderTop:"none"}}> 
                 <tr style={{height:"4.9vh"}}>
                 <td style={{width:"0%"}}></td>
-              <td style={{color:"black",width:"40%",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
+              <td style={{color:"black",width:"40%",height:"10vh",textAlign:"right"}}> {misc[0].total1}/{misc[0].wkts1}</td>
             </tr>
             
               {
@@ -265,18 +265,18 @@ const Summary = (props) => {
         
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"0%",top:"32.9vh",borderRight:"none",textAlign:"left"}}> 
+      <table style={{display:"absolute",width:"50%",left:"0%",top:"40vh",borderRight:"none",textAlign:"left"}}> 
             <tr >
-              <td style={{color:"black",width:"20%",height:"1vh",textAlign:"left"}}> {matchdet[0].innings2_team} <img src={L[matchdet[0].b2]} style={{height:"4vh",width:"4vh"}}/></td>
-              <td style={{color:"black",width:"40%",height:"1vh",textAlign:"left"}}> {matchdet[0].toss_name=='field'?'TOSS':''}</td>
+              <td style={{color:"black",width:"20%",height:"10vh",textAlign:"left"}}> {matchdet[0].innings2_team} <img src={L[matchdet[0].b2]} style={{height:"4vh",width:"4vh"}}/></td>
+              <td style={{color:"black",width:"40%",height:"10vh",textAlign:"left"}}> {matchdet[0].toss_name=='field'?'TOSS':''}</td>
             </tr>
               {
                 range(0,2).map( 
                     x => { return(
                       (ta2[x])?(
                       <tr>
-                    <td style={{width:"80%",textAlign:"left"}}><Link href={"/players/"+ta2[x].player_id} style={{color:"black",textDecoration:"none" }}> {ta2[x].player_name}</Link></td>
-                    <td style={{textAlign:"left"}}>{ta2[x].runs_scored} &nbsp; {ta2[x].balls_faced}</td>
+                    <td style={{width:"60%",textAlign:"left"}}><Link href={"/players/"+ta2[x].player_id} style={{color:"black",textDecoration:"none" }}> {ta2[x].player_name}</Link></td>
+                    <td style={{textAlign:"left"}}>{ta2[x].runs_scored} &nbsp; {"("+ta2[x].balls_faced+")"}</td>
                     </tr>):(<tr>
                         <td style={{width:"60%",textAlign:"left"}}>&nbsp;</td>
                     <td style={{textAlign:"left"}}> &nbsp; </td>
@@ -287,10 +287,10 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"50%",left:"50%",top:"32.9vh",borderLeft:"none"}}> 
+      <table style={{display:"absolute",width:"50%",left:"50%",top:"40vh",borderLeft:"none"}}> 
                 <tr style={{height:"4.9vh"}}>
                 <td style={{width:"0%"}}></td>
-              <td style={{color:"black",width:"40%",height:"1vh",textAlign:"right"}}> {misc[0].total2}/{misc[0].wkts2}</td>
+              <td style={{color:"black",width:"40%",height:"10vh",textAlign:"right"}}> {misc[0].total2}/{misc[0].wkts2}</td>
             </tr>
               {
                 range(0,2).map( 
@@ -309,7 +309,7 @@ const Summary = (props) => {
       }
       
       </table>
-      <table style={{display:"absolute",width:"100%",left:"00%",top:"51vh"}}> 
+      <table style={{display:"absolute",width:"100%",left:"00%",top:"70vh"}}> 
       <tr><td>
       {matchdet[0].match_winner==matchdet[0].team1?matchdet[0].team1name:matchdet[0].team2name} won by {matchdet[0].win_margin} {matchdet[0].win_type}
       </td></tr></table>
