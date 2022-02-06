@@ -21,7 +21,7 @@ export default function App() {
 
   const navlinks=[
     {text:"HOME",link:"/"},
-    {text:"MATHCES",link:"/matches"},
+    {text:"MATCHES",link:"/matches"},
     {text:"POINTS TABLE",link:"/pointstable/2011"},
     {text:"VENUES",link:"/venues"},
     {text:"PLAYERS",link:"/players"}

@@ -49,7 +49,7 @@ const pointsTable = async(year) => {
 }
 
 const syears = async() => {
-    const query =`select distinct season_year from match`;
+    const query =`select distinct season_year from match order by season_year desc`;
     const todo = await pool.query(query,[]);
     return todo.rows;
 }
