@@ -40,7 +40,7 @@ export default function App() {
             <Route path="/venues/" element={<Venues />}/>
             <Route path="/venue/:venue_id" element={<Venue />}/>
             <Route path="/players/" element={<Player_filter />}/>
-            <Route path="/add_venue/" element={<ADD_VENUE />}/>
+            <Route path="/venue/add" element={<ADD_VENUE />}/>
           </Routes>
         </BrowserRouter>
       </div>

@@ -38,7 +38,7 @@ const Venues =()=>{
            ) : (
              <React.Fragment>
          <div style={{position:"absolute",width:"100%",top:"5%",left:"0%",height:"100%",textAlign:"left"}}>
-            <button type="button" class="btn btn-success" onClick={()=>{window.location="/add_venue"}} style={{position:"absolute",width:"10%",left:"45%"}}>Add Venue</button>
+            <button type="button" class="btn btn-success" onClick={()=>{window.location="/venue/add"}} style={{position:"absolute",width:"10%",left:"45%"}}>Add Venue</button>
              <table style={{width:"70%",position:"absolute",left:"15%",top:"10%"}}>
              <tr>
                  <td style={{textAlign:"left"}}><b>Venue</b></td>

@@ -5,23 +5,19 @@ const Player_info=()=>{
 
     const player_id=useParams().player_id;
     const [player, setPlayer]=useState([false]);
-  
 
-    useEffect(()=>{
-        getPlayerinfo();},[]);
     
-    
-        function getPlayerinfo()
-        {
-    
-          fetch(
-            "http://localhost:5000/players/"+player_id+"/4")
-                        .then((res) => res.json())
-                        .then((json) => {
-                           setPlayer(json);
-                           console.log(json);
-                        });
-        }
+        useEffect(()=>{
+            setTimeout(() => {
+                fetch(
+                    "http://localhost:5000/players/"+player_id+"/4")
+                                .then((res) => res.json())
+                                .then((json) => {
+                                   setPlayer(json);
+                                   console.log(json);
+                                });
+            }, 2000);
+        },[]);
 
     return <React.Fragment>
         <div style={{width:"100%",height:"90%",top:"40%",position:"absolute",textAlign:"center"}}>

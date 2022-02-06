@@ -18,21 +18,20 @@ const Player_bat = () => {
     const [player, setPlayer]=useState([false]);
   
 
+
+
+        
     useEffect(()=>{
-        getPlayerinfo();},[]);
-    
-    
-        function getPlayerinfo()
-        {
-    
-          fetch(
-            "http://localhost:5000/players/"+player_id+"/4")
-                        .then((res) => res.json())
-                        .then((json) => {
-                           setPlayer(json);
-                           console.log(json);
-                        });
-        }
+      setTimeout(() => {
+        fetch(
+          "http://localhost:5000/players/"+player_id+"/4")
+                      .then((res) => res.json())
+                      .then((json) => {
+                         setPlayer(json);
+                         console.log(json);
+                      });
+      }, 2000);
+  },[]);
 
     useEffect(() => {
         setTimeout(() => {
