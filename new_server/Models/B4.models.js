@@ -41,7 +41,7 @@ const tbowl = async(match_id,innings_number) => {
                     sum(runs_scored) asc ,
                     player_name asc
                 ) as ranks ,
-                count(player_name) as balls_bowled 
+                count(distinct over_id) as balls_bowled 
                 from ball_by_ball,player
                 where 
                 player.player_id=ball_by_ball.bowler 

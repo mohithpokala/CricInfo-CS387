@@ -16,7 +16,17 @@ const bats_stats = async(match_id,innings_number)=>{
     match.match_id=ball_by_ball.match_id and match.match_id=$1 and innings_no=$2 and 
 	player_match.match_id=match.match_id and player.player_id=player_match.player_id
 	and
-	((innings_no=1 and team1=player_match.team_id) or (innings_no=2 and team2=player_match.team_id))
+	(
+		(team1=player_match.team_id and (toss_winner,toss_name,innings_no) in (
+			(team1,'bat',1),(team1,'field',2),
+			(team2,'bat',2),(team2,'field',1)
+		))
+		or 
+		(team2=player_match.team_id and (toss_winner,toss_name,innings_no) in (
+			(team2,'bat',1),(team2,'field',2),
+			(team1,'bat',2),(team1,'field',1)
+		))
+	)
     group by player_name,player.player_id,playermatch_key
 	order by least_ball asc,playermatch_key asc
     `;
