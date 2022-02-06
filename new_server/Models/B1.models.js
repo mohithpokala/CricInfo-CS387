@@ -10,7 +10,7 @@ const mf= async(skip,limit)=>{
      d as (select * from team),
 	 e as (select * from team)
     select match_id,team.team_name as team1,d.team_name as team2,venue.venue_name,venue.city_name,
-	e.team_name as winner,b.win_margin,b.win_type,match_winner
+	e.team_name as winner,b.win_margin,b.win_type,match_winner,season_year
     from b,team,d,venue,e
     where
 	 team2=d.team_id

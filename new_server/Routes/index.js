@@ -16,7 +16,14 @@ routes.get('/venue',Venue);
 routes.get('/venue/:venue_id',Venue_id);   // Basic Info
 routes.get('/venue/b/:venue_id',Venueb_id); //Win percentage
 routes.get('/venue/c/:venue_id',Venuec_id);  //Avg First innings Score
-
+routes.get('/years',async(req,res)=>{
+  const todo = await pool.query("select distinct season_year as f from match");
+  return res.status(200).json(todo.rows);
+});
+routes.get('/teams',async(req,res)=>{
+  const todo = await pool.query("select team_name as f from team");
+  return res.status(200).json(todo.rows);
+});
 routes.post("/add_venue", async (req, res) => {
     console.log(req.body);
     try {
