@@ -16,7 +16,7 @@ import ADD_VENUE from "./pages/ADD_VENUE";
 import 'bootstrap/dist/css/bootstrap.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
+import Example from "./pages/Support";
 export default function App() {
 
   const navlinks=[
@@ -24,7 +24,8 @@ export default function App() {
     {text:"MATCHES",link:"/matches"},
     {text:"POINTS TABLE",link:"/pointstable/2011"},
     {text:"VENUES",link:"/venues"},
-    {text:"PLAYERS",link:"/players"}
+    {text:"PLAYERS",link:"/players"},
+    {text:"MAP",link:"/example"}
   ]
   return (
     <div className="home_page">
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/venue/:venue_id" element={<Venue />}/>
             <Route path="/players/" element={<Player_filter />}/>
             <Route path="/venue/add" element={<ADD_VENUE />}/>
+            <Route path="/example" element={<Example />}/>
           </Routes>
         </BrowserRouter>
       </div>

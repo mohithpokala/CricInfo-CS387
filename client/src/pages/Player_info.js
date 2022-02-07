@@ -31,7 +31,7 @@ const Player_info=()=>{
                                    setPlayer(json);
                                    console.log(json);
                                 });
-            }, 2000);
+            }, 0);
         },[]);
         console.log(player,flags);
     return <React.Fragment>
